@@ -1,0 +1,14 @@
+:root {
+    --book-bg: #9DB5B2;
+    --card-color: #DAF0EE;
+    --accent-color: #94D1BE;
+    --text-color: #3B413C;
+}
+
+.homepageContainer {
+    border: 1px solid black;
+    background-color: var(--book-bg);
+    margin: auto;
+    width: 95%;
+    height: 95%;
+}

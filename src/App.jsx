@@ -1,9 +1,12 @@
 import "./App.css";
+import Homepage from "./Components/Homepage/Homepage";
 
 function App() {
   return (
     <>
-      <div>Recipe Book</div>
+      <div className="mainContainer">
+        <Homepage />
+      </div>
     </>
   );
 }
