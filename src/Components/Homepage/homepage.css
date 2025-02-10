@@ -18,6 +18,7 @@
         flex-direction: column;
         border-right: 1px solid var(--text-color);
         gap: 10rem;
+        overflow-y: scroll;
     }
 
     .recipeList {
@@ -31,16 +32,26 @@
             align-items: center;
             border: 1px solid black;
             position: relative;
+            color: var(--text-color);
 
             h1 {
                 position: absolute;
                 left: 3%;
+                color: black;
             }
 
             .addRecipeModalContainer {
+                background-color: var(--accent-color);
                 position: absolute;
-                left: 90%;
+                display: flex;
+                left: 85%;
+                width: 8rem;
+                height: 2rem;
                 border: 1px solid black;
+                justify-content: center;
+                align-items: center;
+                border-radius: 1rem;
+                cursor: pointer;
             }
         }
 

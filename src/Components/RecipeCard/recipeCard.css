@@ -1,5 +1,46 @@
 .recipeCard {
-    border: 1px solid black;
+    border: 1px solid #B38000;
+    background-color: #DAF0EE;
     max-width: 90%;
     max-height: 90%;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    color: #3B413C;
+
+    .recipeTitle {
+        border-bottom: 1px solid black;
+        flex: 1;
+        display: flex;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .recipeImg {
+        width: 100%;
+        flex: 6;
+        display: flex;
+        
+        .imageContainer {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                width: 95%;
+                height: 95%;
+                object-fit: contain;
+            }
+        }
+    }
+
+    .recipeQuickInfo {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: space-evenly;
+    }
 }
