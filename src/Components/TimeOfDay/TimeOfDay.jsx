@@ -5,6 +5,7 @@ const TimeOfDay = ({ timeOfDay, recipeCount }) => {
     <div className="timeOfDay">
       <h1>{timeOfDay}</h1>
       <p>Total Recipes: {recipeCount}</p>
+      <div className="bottomBorder"></div>
     </div>
   );
 };

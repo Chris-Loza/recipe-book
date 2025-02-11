@@ -5,7 +5,6 @@ function App() {
   return (
     <>
       <div className="mainContainer">
-        <img src="/images/bookSpiral.jpg" alt="book spiral binding" />
         <Homepage />
       </div>
     </>
