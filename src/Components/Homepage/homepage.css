@@ -86,13 +86,14 @@
             }
 
             .addRecipeModalContainer {
-                background-color: var(--accent-color);
+                background-color: #4DD0E1;
                 position: absolute;
                 display: flex;
                 left: 85%;
                 width: 8rem;
                 height: 2rem;
-                border: 1px solid black;
+                border: 1px solid #546E7A;
+                color: #263238;
                 justify-content: center;
                 align-items: center;
                 border-radius: 1rem;

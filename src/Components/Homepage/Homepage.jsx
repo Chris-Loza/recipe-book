@@ -1,18 +1,19 @@
 import "./homepage.css";
 import TimeOfDay from "../TimeOfDay/TimeOfDay";
 import RecipeCard from "../RecipeCard/RecipeCard";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { GlobalContext } from "../../Library/globalContext";
 
 const Homepage = () => {
-  const [timeOfDay, setTimeOfDay] = useState("Breakfast");
+  const { timeOfDay, setTimeOfDay } = useContext(GlobalContext)
 
   return (
     <div className="homepageContainer">
       <div className="timeOfDayContainer">
-        <TimeOfDay timeOfDay={"Breakfast"} recipeCount={1} />
-        <TimeOfDay timeOfDay={"Lunch"} recipeCount={1} />
-        <TimeOfDay timeOfDay={"Dinner"} recipeCount={1} />
-        <TimeOfDay timeOfDay={"Snacks"} recipeCount={1} />
+        <TimeOfDay timeOfDayProp={"Breakfast"} recipeCount={1} />
+        <TimeOfDay timeOfDayProp={"Lunch"} recipeCount={1} />
+        <TimeOfDay timeOfDayProp={"Dinner"} recipeCount={1} />
+        <TimeOfDay timeOfDayProp={"Snacks"} recipeCount={1} />
         <div className="myLinks">
           <div className="linkedIn">
             <img src="../../../images/LinkedIn.svg" alt="LinkedIn Icon" />
