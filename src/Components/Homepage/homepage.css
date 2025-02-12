@@ -12,6 +12,7 @@
     height: 100%;
     display: flex;
     color: #546E7A;
+    position: relative;
 
     .timeOfDayContainer {
         flex: 1;
@@ -79,7 +80,6 @@
         flex-direction: column;
 
         .header {
-            /* flex: 1; */
             height: 10%;
             padding-top: 1rem;
             display: flex;
@@ -94,7 +94,7 @@
                 left: 3%;
             }
 
-            .addRecipeModalContainer {
+            .addRecipeModalButton {
                 background-color: #4DD0E1;
                 position: absolute;
                 display: flex;
@@ -119,5 +119,15 @@
             gap: 1rem;
             margin: 1rem 4rem;
         }
+    }
+
+    .addRecipeModalContainer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100svh;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 99;
     }
 }

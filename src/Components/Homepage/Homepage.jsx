@@ -1,11 +1,13 @@
 import "./homepage.css";
 import TimeOfDay from "../TimeOfDay/TimeOfDay";
 import RecipeCard from "../RecipeCard/RecipeCard";
+import AddRecipeModal from "../AddRecipe/AddRecipeModal";
 import { useContext, useState } from "react";
 import { GlobalContext } from "../../Library/globalContext";
 
 const Homepage = () => {
   const { timeOfDay, setTimeOfDay } = useContext(GlobalContext);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="homepageContainer">
@@ -30,7 +32,10 @@ const Homepage = () => {
       <div className="recipeList">
         <div className="header">
           <p className="timeOfDayHeader">{timeOfDay}</p>
-          <div className="addRecipeModalContainer">
+          <div
+            className="addRecipeModalButton"
+            onClick={() => setShowModal(!showModal)}
+          >
             <p>Add Recipe</p>
           </div>
         </div>
@@ -43,6 +48,11 @@ const Homepage = () => {
           <RecipeCard />
         </div>
       </div>
+      {showModal && (
+        <div className="addRecipeModalContainer">
+          <AddRecipeModal showModal={showModal} setShowModal={setShowModal} />
+        </div>
+      )}
     </div>
   );
 };
