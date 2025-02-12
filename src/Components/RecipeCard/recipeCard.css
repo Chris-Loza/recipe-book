@@ -1,17 +1,19 @@
 .recipeCard {
-    background-color: #F4F2DD;
-    max-width: 90%;
+    background-color: #263238;
+    max-width: 95%;
     max-height: 90%;
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
-    color: #3B413C;
+    color: #F0F4F8;
     
     .recipeImg {
-        flex: 1;
         display: flex;
+        height: 60%;
+        width: 100%;
         
         .imageContainer {
+            width: 100%;
             img {
                 border-top-left-radius: 0.5rem;
                 border-top-right-radius: 0.5rem;
@@ -25,23 +27,57 @@
     .recipeInfo {
         display: flex;
         flex-direction: column;
-        flex: 8;
+        height: 40%;
+        justify-content: space-between;
 
         .recipeTitle {
+            height: 20%;
             display: flex;
+            padding: 0.75rem;
             padding-left: 0.5rem;
+            padding-top: 1rem;
             align-items: center;
 
+            p {
+                font-weight: bold;
+                font-size: 1.2rem;
+            }
         }
 
         .recipeQuickInfo {
+            height: 80%;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
 
+            .recipeDescription {
+                padding-left: 0.75rem;
+                padding-top: 0.3rem;
+                font-size: 0.75rem;
+                height: 70%;
+                width: 99%;
+                overflow: scroll;
+                align-self: center;
+            }
+            
             .recipeQuickNutrients {
                 display: flex;
-                justify-content: space-evenly;
-                padding: 0rem;
+                justify-content: space-around;
+                padding: 0.5rem;
+
+                p {
+                    font-size: 0.875rem;
+                }
+
+                .macros {
+                    cursor: pointer;
+                    color: #4DD0E1;
+                    font-size: 0.875rem;
+
+                    &:hover {
+                        opacity: 0.6;
+                    }
+                }
             }
         }
     }

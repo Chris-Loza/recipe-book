@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./timeOfDay.css";
 import { GlobalContext } from "../../Library/globalContext";
 
@@ -9,9 +9,11 @@ const TimeOfDay = ({ timeOfDayProp, recipeCount }) => {
     setTimeOfDay(timeOfDayProp);
   };
 
+  
+
   return (
     <div className="timeOfDay">
-      <h1 onClick={handleTimeOfDay}>{timeOfDayProp}</h1>
+      <h1 onClick={handleTimeOfDay} className={timeOfDay === timeOfDayProp ? "active" : ""}>{timeOfDayProp}</h1>
       <p>Total Recipes: {recipeCount}</p>
       <div className="bottomBorder"></div>
     </div>

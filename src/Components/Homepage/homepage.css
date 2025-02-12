@@ -22,6 +22,13 @@
         margin-top: 2rem;
         margin-left: 1rem;
 
+        .myInfo {
+            padding-left: 1rem;
+            width: 80%;
+            font-size: 0.875rem;
+            color: #B0BEC5;
+        }
+
         .myLinks {
             padding-left: 1rem;
             display: flex;
@@ -72,7 +79,9 @@
         flex-direction: column;
 
         .header {
-            flex: 1;
+            /* flex: 1; */
+            height: 10%;
+            padding-top: 1rem;
             display: flex;
             align-items: center;
             position: relative;
@@ -102,7 +111,9 @@
         }
 
         .recipeCards {
-            flex: 11;
+            /* flex: 11; */
+            /* height: 70%; */
+            overflow-y: scroll;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1rem;

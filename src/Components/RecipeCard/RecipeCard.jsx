@@ -14,13 +14,13 @@ const RecipeCard = () => {
       </div>
       <div className="recipeInfo">
         <div className="recipeTitle">
-          <h1>Recipe Title</h1>
+          <p>Recipe Title</p>
         </div>
         <div className="recipeQuickInfo">
           <div className="recipeDescription">Description</div>
           <div className="recipeQuickNutrients">
-            <p>Calories</p>
-            <p>Macro Details</p>
+            <p>Calories: 1000</p>
+            <p className="macros"> + Macro Details</p>
           </div>
         </div>
       </div>

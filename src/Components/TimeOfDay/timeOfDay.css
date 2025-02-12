@@ -12,6 +12,10 @@
         &:hover {
             color: #26C6DA;
         }
+
+        &.active {
+            color: #26C6DA;
+        }
     }
 
     p {

@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import { GlobalContext } from "../../Library/globalContext";
 
 const Homepage = () => {
-  const { timeOfDay, setTimeOfDay } = useContext(GlobalContext)
+  const { timeOfDay, setTimeOfDay } = useContext(GlobalContext);
 
   return (
     <div className="homepageContainer">
@@ -14,6 +14,7 @@ const Homepage = () => {
         <TimeOfDay timeOfDayProp={"Lunch"} recipeCount={1} />
         <TimeOfDay timeOfDayProp={"Dinner"} recipeCount={1} />
         <TimeOfDay timeOfDayProp={"Snacks"} recipeCount={1} />
+        <div className="myInfo"> Developed by Christian Loza</div>
         <div className="myLinks">
           <div className="linkedIn">
             <img src="../../../images/LinkedIn.svg" alt="LinkedIn Icon" />
