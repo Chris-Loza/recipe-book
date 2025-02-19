@@ -42,7 +42,7 @@
             align-items: center;
             justify-content: space-evenly;
 
-            .fieldSet {
+            .radioFieldSet {
                 border: 1px solid #546E7A;
                 width: 95%;
                 height: 80%;
@@ -63,8 +63,23 @@
         }
 
         .recipe {
-            border: 1px solid red;
-            height: 40%
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40%;
+
+            .recipeFieldSet {
+                border: 1px solid #546E7A;
+                display: flex;
+                width: 95%;
+                height: 100%;
+
+                legend {
+                    color: #263238;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                }
+            }
         }
 
         .nutritionSummary {

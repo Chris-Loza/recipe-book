@@ -8,6 +8,13 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
   };
 
   const [selectedTime, setSelectedTime] = useState("Breakfast");
+  const [ingredients, setIngredients] = useState([{
+    ingredient: "",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+  }])
 
   return (
     showModal && (
@@ -18,7 +25,7 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
             <div className="botBorder"></div>
           </div>
           <div className="radioButtons">
-            <fieldset className="fieldSet">
+            <fieldset className="radioFieldSet">
               <legend>Select a Time of Day</legend>
               <label htmlFor="Breakfast">
                 <input
@@ -69,7 +76,12 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
               </label>
             </fieldset>
           </div>
-          <div className="recipe">Recipe</div>
+          <div className="recipe">
+            <fieldset className="recipeFieldSet">
+              <legend>Ingredients</legend>
+              
+              </fieldset>
+          </div>
           <div className="nutritionSummary">Nutritional Summary</div>
           <div className="recipeImgSubmit">Recipe image and submit button</div>
         </div>
