@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./addRecipeModal.css";
 
 const AddRecipeModal = ({ showModal, setShowModal }) => {
@@ -8,13 +8,41 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
   };
 
   const [selectedTime, setSelectedTime] = useState("Breakfast");
-  const [ingredients, setIngredients] = useState([{
-    ingredient: "",
-    calories: 0,
-    protein: 0,
-    carbs: 0,
-    fat: 0,
-  }])
+  const formRef = useRef(null);
+  const [ingredients, setIngredients] = useState({
+    ingredientArray: [],
+  });
+
+  const handleIngredientForm = (e) => {
+    e.preventDefault();
+
+    if (formRef.current) {
+      const ingredientData = new FormData(formRef.current);
+      const rawIngredientValues = Object.fromEntries(ingredientData.entries());
+      console.log("Raw ingredient Values", rawIngredientValues);
+
+      if (rawIngredientValues.ingredient !== "") {
+        const ingredientValues = {
+          ingredient: rawIngredientValues.ingredient,
+          quantity: Number(rawIngredientValues.quantity),
+          calories: Number(rawIngredientValues.calories),
+          fat: Number(rawIngredientValues.fat),
+          carbs: Number(rawIngredientValues.carbs),
+          protein: Number(rawIngredientValues.protein),
+        };
+
+        setIngredients((prev) => ({
+          ingredientArray: [...prev.ingredientArray, ingredientValues],
+        }));
+      }
+
+      formRef.current.reset();
+    }
+  };
+
+  useEffect(() => {
+    console.log("Updated Ingredients Array:", ingredients);
+  }, [ingredients]);
 
   return (
     showModal && (
@@ -79,8 +107,60 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
           <div className="recipe">
             <fieldset className="recipeFieldSet">
               <legend>Ingredients</legend>
-              
-              </fieldset>
+              <div className="ingredients">
+                {ingredients.ingredientArray.map((ingredient, index) => (
+                  <div className="ingredient" key={index}>
+                    <img src="../../../images/RemoveIconRed.svg" alt="Remove Icon" />
+                    <p>Ingredient Name: {ingredient.ingredient}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="ingredientInputs">
+                <form ref={formRef}>
+                  <input
+                    type="text"
+                    name="ingredient"
+                    id="ingredientName"
+                    placeholder="Ingredient"
+                  />
+                  <input
+                    type="text"
+                    name="quantity"
+                    id="ingredientQuantity"
+                    placeholder="Quantity"
+                  />
+                  <input
+                    type="text"
+                    name="calories"
+                    id="ingredientCalories"
+                    placeholder="Calories"
+                  />
+                  <input
+                    type="text"
+                    name="fat"
+                    id="ingredientFat"
+                    placeholder="Fat"
+                  />
+                  <input
+                    type="text"
+                    name="carbs"
+                    id="ingredientCarbs"
+                    placeholder="Carbs"
+                  />
+                  <input
+                    type="text"
+                    name="protein"
+                    id="ingredientProtein"
+                    placeholder="Protein"
+                  />
+                </form>
+                <img
+                  src="../../../images/AddBoxFill.svg"
+                  alt="Add Icon"
+                  onClick={handleIngredientForm}
+                />
+              </div>
+            </fieldset>
           </div>
           <div className="nutritionSummary">Nutritional Summary</div>
           <div className="recipeImgSubmit">Recipe image and submit button</div>
