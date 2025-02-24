@@ -173,8 +173,32 @@
         }
 
         .nutritionSummary {
-            border: 1px solid purple;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 20%;
+            
+            .nutritionFieldSet {
+                border: 1px solid #546E7A;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 95%;
+                height: 80%;
+
+                legend {
+                    color: #263238;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                }
+
+                .totalMacros {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
         }
 
         .recipeImgSubmit {

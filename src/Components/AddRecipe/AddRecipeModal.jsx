@@ -110,8 +110,16 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
               <div className="ingredients">
                 {ingredients.ingredientArray.map((ingredient, index) => (
                   <div className="ingredient" key={index}>
-                    <img src="../../../images/RemoveIconRed.svg" alt="Remove Icon" />
-                    <p>Ingredient Name: {ingredient.ingredient}</p>
+                    <img
+                      src="../../../images/RemoveIconRed.svg"
+                      alt="Remove Icon"
+                    />
+                    <p>
+                      Ingredient Name: {ingredient.ingredient} || Quantity:{" "}
+                      {ingredient.quantity}g || Calories: {ingredient.calories}{" "}
+                      cal || Fat: {ingredient.fat}g || Carbs: {ingredient.carbs}
+                      g || Protein: {ingredient.protein}g ||
+                    </p>
                   </div>
                 ))}
               </div>
@@ -162,7 +170,17 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
               </div>
             </fieldset>
           </div>
-          <div className="nutritionSummary">Nutritional Summary</div>
+          <div className="nutritionSummary">
+            <fieldset className="nutritionFieldSet">
+              <legend>Nutritional Summary</legend>
+              <div className="totalMacros">
+                <p>
+                  Total Calories: 20 cal || Total Fat: 30g || Total Carbs: 23g
+                  || Total Protein: 123g
+                </p>
+              </div>
+            </fieldset>
+          </div>
           <div className="recipeImgSubmit">Recipe image and submit button</div>
         </div>
       </div>
