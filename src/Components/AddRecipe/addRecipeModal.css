@@ -182,6 +182,7 @@
                 border: 1px solid #546E7A;
                 display: flex;
                 flex-direction: column;
+                gap: 1rem;
                 justify-content: center;
                 align-items: center;
                 width: 95%;
@@ -197,6 +198,34 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                }
+
+                .recipeDescription {
+                    width: 95%;
+                    height: 50%;
+                    display: flex;
+                    justify-content: center;
+
+                    textarea {
+                        padding: 1rem;
+                        width: 80%;
+                        border-radius: 0.5rem;
+                        outline: none;
+                        border: none;
+                        text-align: center;
+                        box-shadow: 0 1px 2px #263238;
+                        resize: none;
+                        scrollbar-width: none;
+                        -ms-overflow-style: none;
+    
+                        ::-webkit-scrollbar {
+                            display: none;
+                        }
+    
+                        &:hover {
+                            box-shadow: 0 1px 2px #4DD0E1;
+                        }
+                    }
                 }
             }
         }

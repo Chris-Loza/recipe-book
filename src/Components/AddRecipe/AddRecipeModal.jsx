@@ -172,12 +172,15 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
           </div>
           <div className="nutritionSummary">
             <fieldset className="nutritionFieldSet">
-              <legend>Nutritional Summary</legend>
+              <legend>Nutritional Summary & Description</legend>
               <div className="totalMacros">
                 <p>
                   Total Calories: 20 cal || Total Fat: 30g || Total Carbs: 23g
                   || Total Protein: 123g
                 </p>
+              </div>
+              <div className="recipeDescription">
+                <textarea placeholder="Description" />
               </div>
             </fieldset>
           </div>
