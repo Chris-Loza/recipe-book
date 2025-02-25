@@ -184,7 +184,21 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
               </div>
             </fieldset>
           </div>
-          <div className="recipeImgSubmit">Recipe image and submit button</div>
+          <div className="recipeImgSubmit">
+            <div className="recipeImageContainer">
+              <label htmlFor="recipeImage">
+                <img src="../../../images/AddPhotoAlt.svg" alt="Recipe Image" />
+                Add an Image
+              </label>
+              <input style={{ display: "none" }} type="file" id="recipeImage" />
+            </div>
+            <div className="recipeTitle">
+              <input type="text" placeholder="Recipe Title" />
+            </div>
+            <div className="submitButton">
+              <p>Submit Button</p>
+            </div>
+          </div>
         </div>
       </div>
     )

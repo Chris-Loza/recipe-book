@@ -130,6 +130,10 @@
                             &:hover {
                                 box-shadow: 0 1px 2px #4DD0E1;
                             }
+
+                            &:focus {
+                                box-shadow: 0 1px 2px #4DD0E1;
+                            }
                         }
 
                         #ingredientName {
@@ -217,12 +221,16 @@
                         resize: none;
                         scrollbar-width: none;
                         -ms-overflow-style: none;
-    
+
                         ::-webkit-scrollbar {
                             display: none;
                         }
-    
+
                         &:hover {
+                            box-shadow: 0 1px 2px #4DD0E1;
+                        }
+
+                        &:focus {
                             box-shadow: 0 1px 2px #4DD0E1;
                         }
                     }
@@ -231,10 +239,70 @@
         }
 
         .recipeImgSubmit {
-            border: 1px solid orange;
             height: 10%;
             border-bottom-right-radius: 0.5rem;
             border-bottom-left-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+
+            .recipeImageContainer {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                label {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.5rem;
+
+                    img {
+                        cursor: pointer;
+                        opacity: 0.8;
+
+                        &:hover {
+                            opacity: 0.5;
+                        }
+                    }
+                }
+            }
+
+            .recipeTitle {
+                input {
+                    padding: 0.25rem;
+                    border-radius: 0.5rem;
+                    outline: none;
+                    border: none;
+                    text-align: center;
+                    box-shadow: 0 1px 2px #263238;
+
+                    &:hover {
+                        box-shadow: 0 1px 2px #4DD0E1;
+                    }
+
+                    &:focus {
+                        box-shadow: 0 1px 2px #4DD0E1;
+                    }
+                }
+            }
+
+            .submitButton {
+                background-color: #4DD0E1;
+                display: flex;
+                width: 10rem;
+                height: 2rem;
+                border: 1px solid #546E7A;
+                color: #263238;
+                justify-content: center;
+                align-items: center;
+                border-radius: 1rem;
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
         }
     }
 }
