@@ -40,8 +40,33 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
     }
   };
 
+  const [nutritionalTotal, setNutritionalTotal] = useState({
+    calories: 0,
+    fat: 0,
+    carbs: 0,
+    protein: 0,
+  });
+  
   useEffect(() => {
-    console.log("Updated Ingredients Array:", ingredients);
+    let totalCalories = 0;
+    let totalFat = 0;
+    let totalCarbs = 0;
+    let totalProtein = 0;
+    if (ingredients.ingredientArray.length > 0) {
+      ingredients.ingredientArray.forEach((ingredient) => {
+        totalCalories += ingredient.calories;
+        totalFat += ingredient.fat;
+        totalCarbs += ingredient.carbs;
+        totalProtein += ingredient.protein;
+      });
+
+      setNutritionalTotal({
+        calories: totalCalories,
+        fat: totalFat,
+        carbs: totalCarbs,
+        protein: totalProtein,
+      });
+    }
   }, [ingredients]);
 
   return (
@@ -175,8 +200,8 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
               <legend>Nutritional Summary & Description</legend>
               <div className="totalMacros">
                 <p>
-                  Total Calories: 20 cal || Total Fat: 30g || Total Carbs: 23g
-                  || Total Protein: 123g
+                  Total Calories: {nutritionalTotal.calories} cal || Total Fat: {nutritionalTotal.fat}g || Total Carbs: {nutritionalTotal.carbs}g
+                  || Total Protein: {nutritionalTotal.protein}g
                 </p>
               </div>
               <div className="recipeDescription">
