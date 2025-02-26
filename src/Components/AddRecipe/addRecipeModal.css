@@ -258,8 +258,11 @@
                     gap: 0.5rem;
 
                     img {
+                        width: 2rem;
+                        height: 2rem;
                         cursor: pointer;
                         opacity: 0.8;
+                        object-fit: cover;
 
                         &:hover {
                             opacity: 0.5;

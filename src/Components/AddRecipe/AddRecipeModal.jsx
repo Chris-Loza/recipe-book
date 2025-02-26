@@ -40,35 +40,52 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
     }
   };
 
+  const handleIngredientRemoval = (index) => {
+    const updatedIngredientsArray = [...ingredients.ingredientArray];
+    updatedIngredientsArray.splice(index, 1);
+
+    setIngredients({ ingredientArray: updatedIngredientsArray });
+  };
+
   const [nutritionalTotal, setNutritionalTotal] = useState({
     calories: 0,
     fat: 0,
     carbs: 0,
     protein: 0,
   });
-  
+
   useEffect(() => {
     let totalCalories = 0;
     let totalFat = 0;
     let totalCarbs = 0;
     let totalProtein = 0;
-    if (ingredients.ingredientArray.length > 0) {
-      ingredients.ingredientArray.forEach((ingredient) => {
-        totalCalories += ingredient.calories;
-        totalFat += ingredient.fat;
-        totalCarbs += ingredient.carbs;
-        totalProtein += ingredient.protein;
-      });
+    ingredients.ingredientArray.forEach((ingredient) => {
+      totalCalories += ingredient.calories;
+      totalFat += ingredient.fat;
+      totalCarbs += ingredient.carbs;
+      totalProtein += ingredient.protein;
+    });
 
-      setNutritionalTotal({
-        calories: totalCalories,
-        fat: totalFat,
-        carbs: totalCarbs,
-        protein: totalProtein,
-      });
-    }
+    setNutritionalTotal({
+      calories: totalCalories,
+      fat: totalFat,
+      carbs: totalCarbs,
+      protein: totalProtein,
+    });
   }, [ingredients]);
 
+  const [recipeImage, setRecipeImage] = useState({
+    file: null,
+    url: "",
+  });
+  const handleImageUpload = (e) => {
+    if (e.target.files[0]) {
+      setRecipeImage({
+        file: e.target.files[0],
+        url: URL.createObjectURL(e.target.files[0]),
+      });
+    }
+  };
   return (
     showModal && (
       <div className="modal" onClick={closeModal} ref={modalRef}>
@@ -138,12 +155,13 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
                     <img
                       src="../../../images/RemoveIconRed.svg"
                       alt="Remove Icon"
+                      onClick={() => handleIngredientRemoval(index)}
                     />
                     <p>
                       Ingredient Name: {ingredient.ingredient} || Quantity:{" "}
                       {ingredient.quantity}g || Calories: {ingredient.calories}{" "}
                       cal || Fat: {ingredient.fat}g || Carbs: {ingredient.carbs}
-                      g || Protein: {ingredient.protein}g ||
+                      g || Protein: {ingredient.protein}g
                     </p>
                   </div>
                 ))}
@@ -200,8 +218,10 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
               <legend>Nutritional Summary & Description</legend>
               <div className="totalMacros">
                 <p>
-                  Total Calories: {nutritionalTotal.calories} cal || Total Fat: {nutritionalTotal.fat}g || Total Carbs: {nutritionalTotal.carbs}g
-                  || Total Protein: {nutritionalTotal.protein}g
+                  Total Calories: {nutritionalTotal.calories} cal || Total Fat:{" "}
+                  {nutritionalTotal.fat}g || Total Carbs:{" "}
+                  {nutritionalTotal.carbs}g || Total Protein:{" "}
+                  {nutritionalTotal.protein}g
                 </p>
               </div>
               <div className="recipeDescription">
@@ -212,10 +232,18 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
           <div className="recipeImgSubmit">
             <div className="recipeImageContainer">
               <label htmlFor="recipeImage">
-                <img src="../../../images/AddPhotoAlt.svg" alt="Recipe Image" />
+                <img
+                  src={recipeImage.url || "../../../images/AddPhotoAlt.svg"}
+                  alt="Recipe Image"
+                />
                 Add an Image
               </label>
-              <input style={{ display: "none" }} type="file" id="recipeImage" />
+              <input
+                style={{ display: "none" }}
+                type="file"
+                id="recipeImage"
+                onChange={handleImageUpload}
+              />
             </div>
             <div className="recipeTitle">
               <input type="text" placeholder="Recipe Title" />
