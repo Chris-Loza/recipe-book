@@ -6,7 +6,13 @@ import { useContext, useState } from "react";
 import { GlobalContext } from "../../Library/globalContext";
 
 const Homepage = () => {
-  const { timeOfDay, setTimeOfDay } = useContext(GlobalContext);
+  const {
+    timeOfDay,
+    breakfastRecipes,
+    lunchRecipes,
+    dinnerRecipes,
+    snacksRecipes,
+  } = useContext(GlobalContext);
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -40,12 +46,23 @@ const Homepage = () => {
           </div>
         </div>
         <div className="recipeCards">
-          <RecipeCard />
-          <RecipeCard />
-          <RecipeCard />
-          <RecipeCard />
-          <RecipeCard />
-          <RecipeCard />
+          <RecipeCard name={"Recipe Title"} />
+          <RecipeCard name={"Recipe Title"} />
+          <RecipeCard name={"Recipe Title"} />
+          <RecipeCard name={"Recipe Title"} />
+          <RecipeCard name={"Recipe Title"} />
+          <RecipeCard name={"Recipe Title"} />
+          {breakfastRecipes.length > 0 &&
+            breakfastRecipes.map((recipe, index) => (
+              <RecipeCard
+                key={index}
+                name={recipe.name}
+                ingredients={recipe.ingredients}
+                nutrition={recipe.nutrition}
+                description={recipe.description}
+                image={recipe.image}
+              />
+            ))}
         </div>
       </div>
       {showModal && (

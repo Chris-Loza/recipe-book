@@ -9,11 +9,12 @@
     
     .recipeImg {
         display: flex;
-        height: 60%;
+        max-height: 60%;
         width: 100%;
-        
         .imageContainer {
             width: 100%;
+            max-height: 18rem;
+            overflow: hidden;
             img {
                 border-top-left-radius: 0.5rem;
                 border-top-right-radius: 0.5rem;

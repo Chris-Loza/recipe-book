@@ -1,25 +1,26 @@
 import React from "react";
 import "./recipeCard.css";
 
-const RecipeCard = () => {
+const RecipeCard = ({ name, ingredients, nutrition, description, image }) => {
+  console.log(nutrition?.calories);
   return (
     <div className="recipeCard">
       <div className="recipeImg">
         <div className="imageContainer">
           <img
-            src="../../../images/PBHoneyOatmeal.jpg"
+            src={image || "../../../images/PBHoneyOatmeal.jpg"}
             alt="Peanut Butter Oatmeal"
           />
         </div>
       </div>
       <div className="recipeInfo">
         <div className="recipeTitle">
-          <p>Recipe Title</p>
+          <p>{name}</p>
         </div>
         <div className="recipeQuickInfo">
-          <div className="recipeDescription">Description</div>
+          <div className="recipeDescription">{description}</div>
           <div className="recipeQuickNutrients">
-            <p>Calories: 1000</p>
+            <p>Calories: {nutrition?.calories}</p>
             <p className="macros"> + Macro Details</p>
           </div>
         </div>
