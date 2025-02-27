@@ -78,6 +78,7 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
     file: null,
     url: "",
   });
+
   const handleImageUpload = (e) => {
     if (e.target.files[0]) {
       setRecipeImage({
@@ -86,6 +87,35 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
       });
     }
   };
+
+  const [recipeName, setRecipeName] = useState("");
+  const [recipeDescription, setRecipeDescription] = useState("");
+
+  const [recipe, setRecipe] = useState({
+    name: "",
+    timeOfDay: "",
+    ingredients: "",
+    nutrition: "",
+    description: "",
+    image: "",
+  });
+
+  const handleRecipeSubmit = () => {
+    setRecipe({
+      name: recipeName,
+      timeOfDay: selectedTime,
+      ingredients: ingredients,
+      nutrition: nutritionalTotal,
+      description: recipeDescription,
+      image: recipeImage.url,
+    });
+    // setShowModal(false);
+  };
+
+  useEffect(() => {
+    console.log(recipe);
+  }, [recipe]);
+
   return (
     showModal && (
       <div className="modal" onClick={closeModal} ref={modalRef}>
@@ -225,7 +255,10 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
                 </p>
               </div>
               <div className="recipeDescription">
-                <textarea placeholder="Description" />
+                <textarea
+                  placeholder="Description"
+                  onChange={(e) => setRecipeDescription(e.target.value)}
+                />
               </div>
             </fieldset>
           </div>
@@ -246,9 +279,13 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
               />
             </div>
             <div className="recipeTitle">
-              <input type="text" placeholder="Recipe Title" />
+              <input
+                type="text"
+                placeholder="Recipe Title"
+                onChange={(e) => setRecipeName(e.target.value)}
+              />
             </div>
-            <div className="submitButton">
+            <div className="submitButton" onClick={handleRecipeSubmit}>
               <p>Submit Button</p>
             </div>
           </div>
