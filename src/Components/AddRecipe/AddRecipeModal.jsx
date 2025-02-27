@@ -1,10 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "./addRecipeModal.css";
+import { GlobalContext } from "../../Library/globalContext";
 
 const AddRecipeModal = ({ showModal, setShowModal }) => {
+  const {
+    breakfastRecipes,
+    setBreakfastRecipes,
+    setLunchRecipes,
+    setDinnerRecipes,
+    setSnacksRecipes,
+  } = useContext(GlobalContext);
+
   const modalRef = useRef();
   const closeModal = () => {
-    setShowModal(false);
   };
 
   const [selectedTime, setSelectedTime] = useState("Breakfast");
@@ -91,30 +99,37 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
   const [recipeName, setRecipeName] = useState("");
   const [recipeDescription, setRecipeDescription] = useState("");
 
-  const [recipe, setRecipe] = useState({
-    name: "",
-    timeOfDay: "",
-    ingredients: "",
-    nutrition: "",
-    description: "",
-    image: "",
-  });
-
   const handleRecipeSubmit = () => {
-    setRecipe({
+    const newRecipe = {
       name: recipeName,
       timeOfDay: selectedTime,
       ingredients: ingredients,
       nutrition: nutritionalTotal,
       description: recipeDescription,
       image: recipeImage.url,
-    });
-    // setShowModal(false);
+    };
+
+    switch (selectedTime) {
+      case "Breakfast":
+        setBreakfastRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
+        break;
+      case "Lunch":
+        setLunchRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
+        break;
+      case "Dinner":
+        setDinnerRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
+        break;
+      case "Snacks":
+        setSnacksRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
+        break;
+      default:
+        break;
+    }
   };
 
   useEffect(() => {
-    console.log(recipe);
-  }, [recipe]);
+    console.log(breakfastRecipes);
+  }, [breakfastRecipes]);
 
   return (
     showModal && (
