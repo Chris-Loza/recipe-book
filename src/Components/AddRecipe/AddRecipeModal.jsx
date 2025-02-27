@@ -13,6 +13,7 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
 
   const modalRef = useRef();
   const closeModal = () => {
+    setShowModal(false);
   };
 
   const [selectedTime, setSelectedTime] = useState("Breakfast");
