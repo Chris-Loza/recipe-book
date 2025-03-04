@@ -46,23 +46,65 @@ const Homepage = () => {
           </div>
         </div>
         <div className="recipeCards">
+          {/* <RecipeCard name={"Recipe Title"} />
           <RecipeCard name={"Recipe Title"} />
           <RecipeCard name={"Recipe Title"} />
           <RecipeCard name={"Recipe Title"} />
           <RecipeCard name={"Recipe Title"} />
-          <RecipeCard name={"Recipe Title"} />
-          <RecipeCard name={"Recipe Title"} />
-          {breakfastRecipes.length > 0 &&
-            breakfastRecipes.map((recipe, index) => (
-              <RecipeCard
-                key={index}
-                name={recipe.name}
-                ingredients={recipe.ingredients}
-                nutrition={recipe.nutrition}
-                description={recipe.description}
-                image={recipe.image}
-              />
-            ))}
+          <RecipeCard name={"Recipe Title"} /> */}
+          {timeOfDay === "Breakfast"
+            ? breakfastRecipes.length > 0
+              ? breakfastRecipes.map((recipe, index) => (
+                  <RecipeCard
+                    key={index}
+                    name={recipe.name}
+                    ingredients={recipe.ingredients}
+                    nutrition={recipe.nutrition}
+                    description={recipe.description}
+                    image={recipe.image}
+                  />
+                ))
+              : "Add a Breakfast Recipe"
+            : timeOfDay === "Lunch"
+            ? lunchRecipes.length > 0
+              ? lunchRecipes.map((recipe, index) => (
+                  <RecipeCard
+                    key={index}
+                    name={recipe.name}
+                    ingredients={recipe.ingredients}
+                    nutrition={recipe.nutrition}
+                    description={recipe.description}
+                    image={recipe.image}
+                  />
+                ))
+              : "Add a Lunch Recipe"
+            : timeOfDay === "Dinner"
+            ? dinnerRecipes.length > 0
+              ? dinnerRecipes.map((recipe, index) => (
+                  <RecipeCard
+                    key={index}
+                    name={recipe.name}
+                    ingredients={recipe.ingredients}
+                    nutrition={recipe.nutrition}
+                    description={recipe.description}
+                    image={recipe.image}
+                  />
+                ))
+              : "Add a Dinner Recipe"
+            : timeOfDay === "Snacks"
+            ? snacksRecipes.length > 0
+              ? snacksRecipes.map((recipe, index) => (
+                  <RecipeCard
+                    key={index}
+                    name={recipe.name}
+                    ingredients={recipe.ingredients}
+                    nutrition={recipe.nutrition}
+                    description={recipe.description}
+                    image={recipe.image}
+                  />
+                ))
+              : "Add a Snack Recipe"
+            : "Add a Recipe"}
         </div>
       </div>
       {showModal && (
