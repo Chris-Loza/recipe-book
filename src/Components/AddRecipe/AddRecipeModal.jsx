@@ -4,6 +4,7 @@ import { GlobalContext } from "../../Library/globalContext";
 
 const AddRecipeModal = ({ showModal, setShowModal }) => {
   const {
+    timeOfDay,
     breakfastRecipes,
     setBreakfastRecipes,
     setLunchRecipes,
@@ -16,7 +17,7 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
     setShowModal(false);
   };
 
-  const [selectedTime, setSelectedTime] = useState("Breakfast");
+  const [selectedTime, setSelectedTime] = useState(timeOfDay || "Breakfast");
   const formRef = useRef(null);
   const [ingredients, setIngredients] = useState({
     ingredientArray: [],
