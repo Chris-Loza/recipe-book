@@ -1,4 +1,5 @@
 .recipeCard {
+    position: relative;
     background-color: #263238;
     max-width: 95%;
     max-height: 90%;
@@ -6,7 +7,7 @@
     display: flex;
     flex-direction: column;
     color: #F0F4F8;
-    
+
     .recipeImg {
         display: flex;
         max-height: 60%;
@@ -81,5 +82,15 @@
                 }
             }
         }
+    }
+
+    .cardExpandContainer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100svh;
+        background: rgba(0, 0, 0, 0.2);
+        z-index: 99;
     }
 }

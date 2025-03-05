@@ -1,0 +1,73 @@
+.expandedCardContainer {
+    width: 100vw;
+    height: 100svh;
+
+    .expandedCard {
+        background-color: #F0F4F8;
+        border-radius: 0.5rem;
+        width: 40%;
+        height: 60%;
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translate(-30%, -10%);
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+        display: flex;
+
+        .nutritionLabel {
+            border: 1px solid green;
+            width: 50%;
+            height: 100%;
+            color: red;
+            display: flex;
+            flex-direction: column;
+
+            .header {
+                display: flex;
+                flex-direction: column;
+
+                h1 {
+                    font-size: 2rem;
+                }
+
+                .servingSize {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 95%;
+                    padding-left: 0.25rem;
+                    padding-right: 0.25rem;
+                }
+                .calorieInfo {
+                    display: flex;
+                    justify-content: space-between;
+                    padding-left: 0.25rem;
+                    padding-right: 0.25rem;
+                    .calories {
+                        display: flex;
+                    }
+                }
+            }
+
+
+            .divider {
+                border-bottom: 1px solid #888989;
+                margin: 0.25rem 0;
+                width: 95%;
+            }
+
+            .largeDivider {
+                border-bottom: 10px solid #888989;
+                margin: 0.25rem 0;
+                width: 95%;
+                justify-self: center;
+            }
+        }
+
+        .ingredientsList {
+            border: 1px solid blue;
+            width: 50%;
+            height: 100%;
+            color: red;
+        }
+    }
+}

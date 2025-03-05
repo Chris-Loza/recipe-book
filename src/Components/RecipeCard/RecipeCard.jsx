@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./recipeCard.css";
+import ExpandedCard from "./ExpandedCard";
 
 const RecipeCard = ({ name, ingredients, nutrition, description, image }) => {
-  console.log(nutrition?.calories);
+  const [cardExpand, setCardExpand] = useState(false);
+  const handleCardExpand = () => {
+    setCardExpand(!cardExpand);
+  };
+
   return (
     <div className="recipeCard">
       <div className="recipeImg">
         <div className="imageContainer">
           <img
             src={image || "../../../images/PBHoneyOatmeal.jpg"}
-            alt="Peanut Butter Oatmeal"
+            alt="Recipe Image"
           />
         </div>
       </div>
@@ -21,10 +26,21 @@ const RecipeCard = ({ name, ingredients, nutrition, description, image }) => {
           <div className="recipeDescription">{description}</div>
           <div className="recipeQuickNutrients">
             <p>Calories: {nutrition?.calories}</p>
-            <p className="macros"> + Macro Details</p>
+            <p className="macros" onClick={handleCardExpand}>
+              {" "}
+              + Macros & Details
+            </p>
           </div>
         </div>
       </div>
+      {cardExpand && (
+        <div
+          className="cardExpandContainer"
+          // onClick={() => setCardExpand(false)}
+        >
+          <ExpandedCard cardExpand={cardExpand} setCardExpand={setCardExpand} />
+        </div>
+      )}
     </div>
   );
 };
