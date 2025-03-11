@@ -86,7 +86,7 @@ const ExpandedCard = ({ cardExpand, setCardExpand, name, ingredients, nutrition 
             <h1>Ingredients</h1>
             <ul>
               {ingredients.ingredientArray.map((ingredient, index) => (
-                <li key={index}>{ingredient.ingredient} {ingredient.quantity}g</li>
+                <li key={index}>{ingredient.ingredient}: {ingredient.quantity}g</li>
               ))}
             </ul>
           </div>

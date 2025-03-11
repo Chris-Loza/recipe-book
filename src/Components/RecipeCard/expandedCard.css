@@ -180,6 +180,10 @@
 
             .ingredients {
                 width: 85%;
+
+                h1 {
+                    padding-bottom: 0.5rem;
+                }
             }
         }
     }
