@@ -1,7 +1,8 @@
 import React from "react";
 import "./expandedCard.css";
 
-const ExpandedCard = ({ cardExpand, setCardExpand }) => {
+const ExpandedCard = ({ cardExpand, setCardExpand, name, ingredients, nutrition }) => {
+  console.log(nutrition)
   return (
     <div className="expandedCardContainer" onClick={() => setCardExpand(false)}>
       <div className="expandedCard" onClick={(e) => e.stopPropagation()}>
@@ -14,7 +15,7 @@ const ExpandedCard = ({ cardExpand, setCardExpand }) => {
                 <b>Serving size</b>
               </p>
               <p>
-                <b>123g</b>
+                <b>{nutrition.quantity}g</b>
               </p>
             </div>
             <div className="largeDivider"></div>
@@ -24,7 +25,7 @@ const ExpandedCard = ({ cardExpand, setCardExpand }) => {
                 <p className="caloriesText">Calories</p>
               </div>
               <div className="calories">
-                <p>230</p>
+                <p>{nutrition?.calories}</p>
               </div>
             </div>
           </div>
@@ -37,7 +38,7 @@ const ExpandedCard = ({ cardExpand, setCardExpand }) => {
             <div className="macro">
               <div className="totalMacro">
                 <p>
-                  <span>Total Fat</span> 9g
+                  <span>Total Fat</span> {nutrition?.fat}g
                 </p>
               </div>
               <div className="macroPercentage">
@@ -48,7 +49,7 @@ const ExpandedCard = ({ cardExpand, setCardExpand }) => {
             <div className="macro">
               <div className="totalMacro">
                 <p>
-                  <span>Total Carbohydrate</span> 9g
+                  <span>Total Carbohydrate</span> {nutrition?.carbs}g
                 </p>
               </div>
               <div className="macroPercentage">
@@ -59,7 +60,7 @@ const ExpandedCard = ({ cardExpand, setCardExpand }) => {
             <div className="macro">
               <div className="totalMacro">
                 <p>
-                  <span>Total Protein</span> 9g
+                  <span>Total Protein</span> {nutrition?.protein}g
                 </p>
               </div>
               <div className="macroPercentage">
@@ -76,7 +77,20 @@ const ExpandedCard = ({ cardExpand, setCardExpand }) => {
             </div>
           </div>
         </div>
-        <div className="ingredientsList">Ingredients List</div>
+        <div className="ingredientsList">
+          <div className="ingredientsHeader">
+            <h1>{name}</h1>
+            <div className="divider"></div>
+          </div>
+          <div className="ingredients">
+            <h1>Ingredients</h1>
+            <ul>
+              {ingredients.ingredientArray.map((ingredient, index) => (
+                <li key={index}>{ingredient.ingredient} {ingredient.quantity}g</li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );

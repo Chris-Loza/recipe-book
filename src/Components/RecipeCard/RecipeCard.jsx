@@ -38,7 +38,13 @@ const RecipeCard = ({ name, ingredients, nutrition, description, image }) => {
           className="cardExpandContainer"
           // onClick={() => setCardExpand(false)}
         >
-          <ExpandedCard cardExpand={cardExpand} setCardExpand={setCardExpand} />
+          <ExpandedCard
+            cardExpand={cardExpand}
+            setCardExpand={setCardExpand}
+            ingredients={ingredients}
+            name={name}
+            nutrition={nutrition}
+          />
         </div>
       )}
     </div>

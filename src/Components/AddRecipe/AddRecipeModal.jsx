@@ -69,11 +69,13 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
     let totalFat = 0;
     let totalCarbs = 0;
     let totalProtein = 0;
+    let totalQuantity = 0;
     ingredients.ingredientArray.forEach((ingredient) => {
       totalCalories += ingredient.calories;
       totalFat += ingredient.fat;
       totalCarbs += ingredient.carbs;
       totalProtein += ingredient.protein;
+      totalQuantity += ingredient.quantity;
     });
 
     setNutritionalTotal({
@@ -81,6 +83,7 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
       fat: totalFat,
       carbs: totalCarbs,
       protein: totalProtein,
+      quantity: totalQuantity,
     });
   }, [ingredients]);
 
