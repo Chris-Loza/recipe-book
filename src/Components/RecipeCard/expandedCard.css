@@ -15,19 +15,21 @@
         display: flex;
 
         .nutritionLabel {
-            border: 1px solid green;
+            /* border: 1px solid green; */
             width: 50%;
             height: 100%;
-            color: red;
+            color: #000;
             display: flex;
             flex-direction: column;
 
             .header {
                 display: flex;
                 flex-direction: column;
+                flex: 2;
+                padding: 0rem;
 
                 h1 {
-                    font-size: 2rem;
+                    font-size: 1.5rem;
                 }
 
                 .servingSize {
@@ -37,29 +39,105 @@
                     padding-left: 0.25rem;
                     padding-right: 0.25rem;
                 }
+
+                .divider {
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.75);
+                    margin: 0.25rem 0;
+                    width: 95%;
+                }
+
+                .largeDivider {
+                    border-bottom: 10px solid #000;
+                    margin: 0.25rem 0;
+                    width: 95%;
+                    justify-self: center;
+                }
+
                 .calorieInfo {
                     display: flex;
-                    justify-content: space-between;
+                    width: 95%;
                     padding-left: 0.25rem;
                     padding-right: 0.25rem;
+                    font-weight: bold;
+                    justify-content: space-between;
+
+
+                    .servingContainer {
+                        p {
+                            font-size: 0.75rem;
+                        }
+
+                        .caloriesText {
+                            font-size: 1.25rem;
+                        }
+                    }
+
                     .calories {
                         display: flex;
+                        justify-content: flex-end;
+                        align-content: flex-start;
+
+                        p {
+                            font-size: 2rem;
+                        }
                     }
                 }
             }
 
-
-            .divider {
-                border-bottom: 1px solid #888989;
-                margin: 0.25rem 0;
+            .mediumDivider {
+                border-bottom: 5px solid #000;
                 width: 95%;
+                margin: 0.25rem 0;
+                align-self: center;
             }
 
-            .largeDivider {
-                border-bottom: 10px solid #888989;
-                margin: 0.25rem 0;
-                width: 95%;
-                justify-self: center;
+            .dailyValueText {
+                border: 1px solid red;
+                flex: 5;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+
+                .dailyValuePercent {
+                    align-self: flex-end;
+                    p {
+                        padding-left: 0.25rem;
+                        padding-right: 0.50rem;
+                        font-size: 0.75rem;
+                    }
+                }
+
+                .macro {
+                    display: flex;
+                    width: 95%;
+                    justify-content: space-between;
+                    padding-left: 0.25rem;
+                    padding-right: 0.25rem;
+                    
+                    .totalMacro {
+                        p {
+                            font-size: 0.875rem;
+                        }
+                        span {
+                            font-size: 0.875rem;
+                            font-weight: bold;
+                        }
+                    }
+
+                    .macroPercentage {
+                        font-weight: bold;
+                        p {
+                            font-size: 0.875em;
+                        }
+                    }
+                }
+
+                .divider {
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.75);
+                    margin: 0.25rem 0;
+                    width: 95%;
+                }
             }
         }
 
