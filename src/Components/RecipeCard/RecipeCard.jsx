@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import "./recipeCard.css";
 import ExpandedCard from "./ExpandedCard";
+import EditRecipeModal from "../EditRecipe/EditRecipeModal";
 
 const RecipeCard = ({ name, ingredients, nutrition, description, image }) => {
   const [cardExpand, setCardExpand] = useState(false);
   const handleCardExpand = () => {
     setCardExpand(!cardExpand);
   };
+  const [showEditModal, setShowEditModal] = useState(false);
 
   return (
     <div className="recipeCard">
       <div className="recipeImg">
-        <div className="editButton">
+        <div
+          className="editButton"
+          onClick={() => setShowEditModal(!showEditModal)}
+        >
           <img src="../../../images/EditPencilFillDark.svg" alt="Edit Icon" />
         </div>
         <div className="imageContainer">
@@ -47,6 +52,14 @@ const RecipeCard = ({ name, ingredients, nutrition, description, image }) => {
             ingredients={ingredients}
             name={name}
             nutrition={nutrition}
+          />
+        </div>
+      )}
+      {showEditModal && (
+        <div className="editRecipeModalContainerMain">
+          <EditRecipeModal
+            showEditModal={showEditModal}
+            setShowEditModal={setShowEditModal}
           />
         </div>
       )}

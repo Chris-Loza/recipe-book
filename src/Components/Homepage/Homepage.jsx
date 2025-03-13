@@ -56,12 +56,12 @@ const Homepage = () => {
           </div>
         </div>
         <div className="recipeCards">
-          {/* <RecipeCard name={"Recipe Title"} />
           <RecipeCard name={"Recipe Title"} />
           <RecipeCard name={"Recipe Title"} />
           <RecipeCard name={"Recipe Title"} />
           <RecipeCard name={"Recipe Title"} />
-          <RecipeCard name={"Recipe Title"} /> */}
+          <RecipeCard name={"Recipe Title"} />
+          <RecipeCard name={"Recipe Title"} />
           {timeOfDay === "Breakfast" ? (
             breakfastRecipes.length > 0 ? (
               breakfastRecipes.map((recipe, index) => (
