@@ -11,6 +11,9 @@ const RecipeCard = ({ name, ingredients, nutrition, description, image }) => {
   return (
     <div className="recipeCard">
       <div className="recipeImg">
+        <div className="editButton">
+          <img src="../../../images/EditPencilFillDark.svg" alt="Edit Icon" />
+        </div>
         <div className="imageContainer">
           <img
             src={image || "../../../images/PBHoneyOatmeal.jpg"}

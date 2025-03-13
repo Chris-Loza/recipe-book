@@ -8,10 +8,7 @@ const ExpandedCard = ({
   ingredients,
   nutrition,
 }) => {
-  console.log(nutrition?.fat / 78);
-  // const [dailyPercents, setDailyPercents] = useState({
-  //   dailyFatPecent: nutrition?.fat/78,
-  // })
+
   return (
     <div className="expandedCardContainer" onClick={() => setCardExpand(false)}>
       <div className="expandedCard" onClick={(e) => e.stopPropagation()}>

@@ -9,9 +9,29 @@
     color: #F0F4F8;
 
     .recipeImg {
+        position: relative;
         display: flex;
         max-height: 60%;
         width: 100%;
+
+        .editButton {
+            position: absolute;
+            top: 5%;
+            left: 85%;
+            cursor: pointer;
+            border: 2px solid #263238;
+            border-radius: 3rem;
+            width: 12%;
+            height: 14%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+
         .imageContainer {
             width: 100%;
             max-height: 18rem;
@@ -61,7 +81,7 @@
                 overflow: scroll;
                 align-self: center;
             }
-            
+
             .recipeQuickNutrients {
                 display: flex;
                 justify-content: space-around;
