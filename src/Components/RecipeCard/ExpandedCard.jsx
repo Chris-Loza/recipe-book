@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "./expandedCard.css";
 
-const ExpandedCard = ({ cardExpand, setCardExpand, name, ingredients, nutrition }) => {
-  console.log(nutrition)
+const ExpandedCard = ({
+  cardExpand,
+  setCardExpand,
+  name,
+  ingredients,
+  nutrition,
+}) => {
+  console.log(nutrition?.fat / 78);
+  // const [dailyPercents, setDailyPercents] = useState({
+  //   dailyFatPecent: nutrition?.fat/78,
+  // })
   return (
     <div className="expandedCardContainer" onClick={() => setCardExpand(false)}>
       <div className="expandedCard" onClick={(e) => e.stopPropagation()}>
@@ -42,7 +51,7 @@ const ExpandedCard = ({ cardExpand, setCardExpand, name, ingredients, nutrition 
                 </p>
               </div>
               <div className="macroPercentage">
-                <p>10%</p>
+                <p>{Math.floor(nutrition?.fat/78 * 100)}%</p>
               </div>
             </div>
             <div className="divider"></div>
@@ -53,7 +62,7 @@ const ExpandedCard = ({ cardExpand, setCardExpand, name, ingredients, nutrition 
                 </p>
               </div>
               <div className="macroPercentage">
-                <p>10%</p>
+                <p>{Math.floor(nutrition?.carbs/275 * 100)}%</p>
               </div>
             </div>
             <div className="divider"></div>
@@ -64,7 +73,7 @@ const ExpandedCard = ({ cardExpand, setCardExpand, name, ingredients, nutrition 
                 </p>
               </div>
               <div className="macroPercentage">
-                <p>10%</p>
+                <p>{Math.floor(nutrition?.protein/50 * 100)}%</p>
               </div>
             </div>
             <div className="largeDivider"></div>
@@ -86,7 +95,9 @@ const ExpandedCard = ({ cardExpand, setCardExpand, name, ingredients, nutrition 
             <h1>Ingredients</h1>
             <ul>
               {ingredients.ingredientArray.map((ingredient, index) => (
-                <li key={index}>{ingredient.ingredient}: {ingredient.quantity}g</li>
+                <li key={index}>
+                  {ingredient.ingredient}: {ingredient.quantity}g
+                </li>
               ))}
             </ul>
           </div>
