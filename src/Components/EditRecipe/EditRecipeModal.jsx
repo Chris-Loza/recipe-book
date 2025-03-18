@@ -1,7 +1,18 @@
 import React from "react";
 import "./editRecipeModal.css";
 
-const EditRecipeModal = ({ showEditModal, setShowEditModal }) => {
+const EditRecipeModal = ({
+  showEditModal,
+  setShowEditModal,
+  name,
+  ingredients,
+  nutrition,
+  description,
+  image,
+  timeOfDay,
+}) => {
+  console.log(timeOfDay);
+  // Do this with the index of the recipe instead
   return (
     showEditModal && (
       <div

@@ -14,6 +14,8 @@ const Homepage = () => {
     dinnerRecipes,
     snacksRecipes,
   } = useContext(GlobalContext);
+
+  console.log(breakfastRecipes);
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -112,6 +114,7 @@ const Homepage = () => {
                   nutrition={recipe.nutrition}
                   description={recipe.description}
                   image={recipe.image}
+                  timeOfDay={recipe.timeOfDay}
                 />
               ))
             ) : (

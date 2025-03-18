@@ -3,7 +3,14 @@ import "./recipeCard.css";
 import ExpandedCard from "./ExpandedCard";
 import EditRecipeModal from "../EditRecipe/EditRecipeModal";
 
-const RecipeCard = ({ name, ingredients, nutrition, description, image }) => {
+const RecipeCard = ({
+  name,
+  ingredients,
+  nutrition,
+  description,
+  image,
+  timeOfDay,
+}) => {
   const [cardExpand, setCardExpand] = useState(false);
   const handleCardExpand = () => {
     setCardExpand(!cardExpand);
@@ -60,6 +67,12 @@ const RecipeCard = ({ name, ingredients, nutrition, description, image }) => {
           <EditRecipeModal
             showEditModal={showEditModal}
             setShowEditModal={setShowEditModal}
+            name={name}
+            ingredients={ingredients}
+            nutrition={nutrition}
+            description={description}
+            image={image}
+            timeOfDay={timeOfDay}
           />
         </div>
       )}
