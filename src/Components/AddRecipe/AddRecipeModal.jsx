@@ -306,7 +306,7 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
               />
             </div>
             <div className="submitButton" onClick={handleRecipeSubmit}>
-              <p>Submit Button</p>
+              <p>Submit Recipe</p>
             </div>
           </div>
         </div>
