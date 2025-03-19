@@ -58,22 +58,24 @@ const Homepage = () => {
           </div>
         </div>
         <div className="recipeCards">
+          {/* <RecipeCard name={"Recipe Title"} />
           <RecipeCard name={"Recipe Title"} />
           <RecipeCard name={"Recipe Title"} />
           <RecipeCard name={"Recipe Title"} />
           <RecipeCard name={"Recipe Title"} />
-          <RecipeCard name={"Recipe Title"} />
-          <RecipeCard name={"Recipe Title"} />
+          <RecipeCard name={"Recipe Title"} /> */}
           {timeOfDay === "Breakfast" ? (
             breakfastRecipes.length > 0 ? (
               breakfastRecipes.map((recipe, index) => (
                 <RecipeCard
                   key={index}
+                  index={index}
                   name={recipe.name}
                   ingredients={recipe.ingredients}
                   nutrition={recipe.nutrition}
                   description={recipe.description}
                   image={recipe.image}
+                  timeOfDay={recipe.timeOfDay}
                 />
               ))
             ) : (
@@ -89,11 +91,13 @@ const Homepage = () => {
               lunchRecipes.map((recipe, index) => (
                 <RecipeCard
                   key={index}
+                  index={index}
                   name={recipe.name}
                   ingredients={recipe.ingredients}
                   nutrition={recipe.nutrition}
                   description={recipe.description}
                   image={recipe.image}
+                  timeOfDay={recipe.timeOfDay}
                 />
               ))
             ) : (
@@ -109,6 +113,7 @@ const Homepage = () => {
               dinnerRecipes.map((recipe, index) => (
                 <RecipeCard
                   key={index}
+                  index={index}
                   name={recipe.name}
                   ingredients={recipe.ingredients}
                   nutrition={recipe.nutrition}
@@ -130,11 +135,13 @@ const Homepage = () => {
               snacksRecipes.map((recipe, index) => (
                 <RecipeCard
                   key={index}
+                  index={index}
                   name={recipe.name}
                   ingredients={recipe.ingredients}
                   nutrition={recipe.nutrition}
                   description={recipe.description}
                   image={recipe.image}
+                  timeOfDay={recipe.timeOfDay}
                 />
               ))
             ) : (

@@ -10,13 +10,14 @@ const RecipeCard = ({
   description,
   image,
   timeOfDay,
+  index,
 }) => {
   const [cardExpand, setCardExpand] = useState(false);
   const handleCardExpand = () => {
     setCardExpand(!cardExpand);
   };
   const [showEditModal, setShowEditModal] = useState(false);
-
+  console.log(index);
   return (
     <div className="recipeCard">
       <div className="recipeImg">
@@ -67,12 +68,11 @@ const RecipeCard = ({
           <EditRecipeModal
             showEditModal={showEditModal}
             setShowEditModal={setShowEditModal}
-            name={name}
-            ingredients={ingredients}
-            nutrition={nutrition}
+            timeOfDay={timeOfDay}
+            index={index}
             description={description}
             image={image}
-            timeOfDay={timeOfDay}
+            name={name}
           />
         </div>
       )}
