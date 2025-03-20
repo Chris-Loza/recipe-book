@@ -250,9 +250,10 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-
+                
                 label {
                     display: flex;
+                    cursor: pointer;
                     align-items: center;
                     justify-content: center;
                     gap: 0.5rem;
@@ -260,7 +261,6 @@
                     img {
                         width: 2rem;
                         height: 2rem;
-                        cursor: pointer;
                         opacity: 0.8;
                         object-fit: cover;
 
