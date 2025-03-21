@@ -7,14 +7,27 @@ const EditRecipeModal = ({
   setShowEditModal,
   timeOfDay,
   index,
-  description,
-  image,
-  name,
 }) => {
   const { breakfastRecipes, lunchRecipes, dinnerRecipes, snacksRecipes } =
     useContext(GlobalContext);
-
-  const [displayImage, setDisplayImage] = useState(image);
+  const currentRecipe =
+    timeOfDay === "Breakfast"
+      ? breakfastRecipes[index]
+      : timeOfDay === "Lunch"
+      ? lunchRecipes[index]
+      : timeOfDay === "Dinner"
+      ? dinnerRecipes[index]
+      : timeOfDay === "snacks"
+      ? snacksRecipes[index]
+      : "";
+  console.log(currentRecipe);
+  const ingredientsList = currentRecipe.ingredients.ingredientArray;
+  const [currentIngredientsList, setCurrentIngredientsList] = useState(
+    ingredientsList || []
+  );
+  console.log(ingredientsList);
+  console.log(currentIngredientsList);
+  const [displayImage, setDisplayImage] = useState(currentRecipe.image);
 
   const [editedTimeOfDay, setEditedTimeOfDay] = useState(
     timeOfDay || "Breakfast"
@@ -27,9 +40,6 @@ const EditRecipeModal = ({
   });
 
   const formRef = useRef(null);
-  const [addedIngredients, setAddedIngredients] = useState({
-    ingredientArray: [],
-  });
   const [addedIngredientsTotalNutrition, setAddedIngredientsTotalNutrition] =
     useState({
       calories: 0,
@@ -46,7 +56,7 @@ const EditRecipeModal = ({
     let totalAddedProtein = 0;
     let totalAddedQuantity = 0;
 
-    addedIngredients.ingredientArray.forEach((ingredient) => {
+    currentIngredientsList.forEach((ingredient) => {
       totalAddedCalories += ingredient.calories;
       totalAddedFat += ingredient.fat;
       totalAddedCarbs += ingredient.carbs;
@@ -61,7 +71,7 @@ const EditRecipeModal = ({
       protein: totalAddedProtein,
       quantity: totalAddedQuantity,
     });
-  }, [addedIngredients]);
+  }, [currentIngredientsList]);
 
   const handleIngredientAddition = (e) => {
     e.preventDefault();
@@ -80,20 +90,17 @@ const EditRecipeModal = ({
           protein: Number(rawIngredientValues.protein),
         };
 
-        setAddedIngredients((prev) => ({
-          ingredientArray: [...prev.ingredientArray, ingredientValues],
-        }));
+        setCurrentIngredientsList((prev) => [...prev, ingredientValues]);
       }
 
       formRef.current.reset();
     }
   };
-
-  const handleNewlyAddedIngredientRemoval = (index) => {
-    const updatedIngredientsArray = [...addedIngredients.ingredientArray];
+  const handleIngredientRemoval = (index) => {
+    const updatedIngredientsArray = [...currentIngredientsList];
     updatedIngredientsArray.splice(index, 1);
 
-    setAddedIngredients({ ingredientArray: updatedIngredientsArray });
+    setCurrentIngredientsList(updatedIngredientsArray);
   };
 
   const handleImageEdit = (e) => {
@@ -112,17 +119,50 @@ const EditRecipeModal = ({
   }, [editedRecipeImage]);
 
   const handleRecipeEdit = () => {
-    console.log("New Time of Day ", editedTimeOfDay);
-    console.log("New Description ", editedDescription);
-    console.log("New Title ", editedTitle);
-    console.log("New Iamge ", editedRecipeImage);
-    console.log("Newly Added Ingredients", addedIngredients);
+    if (timeOfDay === "Breakfast") {
+      console.log(breakfastRecipes[index]);
+      breakfastRecipes[index].name = editedTitle;
+      breakfastRecipes[index].description = editedDescription;
+      breakfastRecipes[index].timeOfDay = editedTimeOfDay;
+      breakfastRecipes[index].nutrition = addedIngredientsTotalNutrition;
+      breakfastRecipes[index].ingredients.ingredientArray =
+        currentIngredientsList;
+      if (editedRecipeImage.url !== "") {
+        breakfastRecipes[index].image = editedRecipeImage.url;
+      }
+    } else if (timeOfDay === "Lunch") {
+      console.log(lunchRecipes[index]);
+      lunchRecipes[index].name = editedTitle;
+      lunchRecipes[index].description = editedDescription;
+      lunchRecipes[index].timeOfDay = editedTimeOfDay;
+      lunchRecipes[index].nutrition = addedIngredientsTotalNutrition;
+      lunchRecipes[index].ingredients.ingredientArray = currentIngredientsList;
+      if (editedRecipeImage.url !== "") {
+        lunchRecipes[index].image = editedRecipeImage.url;
+      }
+    } else if (timeOfDay === "Dinner") {
+      console.log(dinnerRecipes[index]);
+      dinnerRecipes[index].name = editedTitle;
+      dinnerRecipes[index].description = editedDescription;
+      dinnerRecipes[index].timeOfDay = editedTimeOfDay;
+      dinnerRecipes[index].nutrition = addedIngredientsTotalNutrition;
+      dinnerRecipes[index].ingredients.ingredientArray = currentIngredientsList;
+      if (editedRecipeImage.url !== "") {
+        dinnerRecipes[index].image = editedRecipeImage.url;
+      }
+    } else {
+      console.log(snacksRecipes[index]);
+      snacksRecipes[index].name = editedTitle;
+      snacksRecipes[index].description = editedDescription;
+      snacksRecipes[index].timeOfDay = editedTimeOfDay;
+      snacksRecipes[index].nutrition = addedIngredientsTotalNutrition;
+      snacksRecipes[index].ingredients.ingredientArray = currentIngredientsList;
+      if (editedRecipeImage.url !== "") {
+        snacksRecipes[index].image = editedRecipeImage.url;
+      }
+    }
   };
 
-  console.log(timeOfDay);
-  console.log(dinnerRecipes[index]);
-  console.log(image);
-  console.log(displayImage);
   return (
     showEditModal && (
       <div
@@ -190,101 +230,22 @@ const EditRecipeModal = ({
             <fieldset className="editRecipeFieldset">
               <legend>Edit Ingredients</legend>
               <div className="ingredients">
-                {timeOfDay === "Breakfast"
-                  ? breakfastRecipes[index].ingredients.ingredientArray.map(
-                      (ingredient, index) => (
-                        <div className="ingredient" key={index}>
-                          <img
-                            src="../../../images/RemoveIconRed.svg"
-                            alt="Remove Icon"
-                          />
-                          <p>
-                            {" "}
-                            Ingredient Name: {ingredient.ingredient} ||
-                            Quantity: {ingredient.quantity}g || Calories:{" "}
-                            {ingredient.calories} cal || Fat: {ingredient.fat}g
-                            || Carbs: {ingredient.carbs}g || Protein:{" "}
-                            {ingredient.protein}g
-                          </p>
-                        </div>
-                      )
-                    )
-                  : timeOfDay === "Lunch"
-                  ? lunchRecipes[index].ingredients.ingredientArray.map(
-                      (ingredient, index) => (
-                        <div className="ingredient" key={index}>
-                          <img
-                            src="../../../images/RemoveIconRed.svg"
-                            alt="Remove Icon"
-                          />
-                          <p>
-                            {" "}
-                            Ingredient Name: {ingredient.ingredient} ||
-                            Quantity: {ingredient.quantity}g || Calories:{" "}
-                            {ingredient.calories} cal || Fat: {ingredient.fat}g
-                            || Carbs: {ingredient.carbs}g || Protein:{" "}
-                            {ingredient.protein}g
-                          </p>
-                        </div>
-                      )
-                    )
-                  : timeOfDay === "Dinner"
-                  ? dinnerRecipes[index].ingredients.ingredientArray.map(
-                      (ingredient, index) => (
-                        <div className="ingredient" key={index}>
-                          <img
-                            src="../../../images/RemoveIconRed.svg"
-                            alt="Remove Icon"
-                          />
-                          <p>
-                            {" "}
-                            Ingredient Name: {ingredient.ingredient} ||
-                            Quantity: {ingredient.quantity}g || Calories:{" "}
-                            {ingredient.calories} cal || Fat: {ingredient.fat}g
-                            || Carbs: {ingredient.carbs}g || Protein:{" "}
-                            {ingredient.protein}g
-                          </p>
-                        </div>
-                      )
-                    )
-                  : timeOfDay === "Dinner"
-                  ? dinnerRecipes[index].ingredients.ingredientArray.map(
-                      (ingredient, index) => (
-                        <div className="ingredient" key={index}>
-                          <img
-                            src="../../../images/RemoveIconRed.svg"
-                            alt="Remove Icon"
-                          />
-                          <p>
-                            {" "}
-                            Ingredient Name: {ingredient.ingredient} ||
-                            Quantity: {ingredient.quantity}g || Calories:{" "}
-                            {ingredient.calories} cal || Fat: {ingredient.fat}g
-                            || Carbs: {ingredient.carbs}g || Protein:{" "}
-                            {ingredient.protein}g
-                          </p>
-                        </div>
-                      )
-                    )
-                  : ""}
-                {addedIngredients.ingredientArray.length > 0 &&
-                  addedIngredients.ingredientArray.map((ingredient, index) => (
-                    <div className="ingredient" key={index}>
-                      <img
-                        src="../../../images/RemoveIconRed.svg"
-                        alt="Remove Icon"
-                        onClick={() => handleNewlyAddedIngredientRemoval(index)}
-                      />
-                      <p>
-                        {" "}
-                        Ingredient Name: {ingredient.ingredient} || Quantity:{" "}
-                        {ingredient.quantity}g || Calories:{" "}
-                        {ingredient.calories} cal || Fat: {ingredient.fat}g ||
-                        Carbs: {ingredient.carbs}g || Protein:{" "}
-                        {ingredient.protein}g
-                      </p>
-                    </div>
-                  ))}
+                {currentIngredientsList.map((ingredient, index) => (
+                  <div className="ingredient" key={index}>
+                    <img
+                      src="../../../images/RemoveIconRed.svg"
+                      alt="Remove Icon"
+                      onClick={() => handleIngredientRemoval(index)}
+                    />
+                    <p>
+                      {" "}
+                      Ingredient Name: {ingredient.ingredient} || Quantity:{" "}
+                      {ingredient.quantity}g || Calories: {ingredient.calories}{" "}
+                      cal || Fat: {ingredient.fat}g || Carbs: {ingredient.carbs}
+                      g || Protein: {ingredient.protein}g
+                    </p>
+                  </div>
+                ))}
               </div>
               <div className="ingredientInputs">
                 <form ref={formRef}>
@@ -337,78 +298,21 @@ const EditRecipeModal = ({
             <fieldset className="editNutritionFieldset">
               <legend>Edit Nutritional Summary & Description</legend>
               <div className="totalMacros">
-                {timeOfDay === "Breakfast" ? (
+                {
                   <p>
-                    Total Calories:{" "}
-                    {breakfastRecipes[index].nutrition.calories +
-                      addedIngredientsTotalNutrition.calories}{" "}
-                    cal || Total Fat:{" "}
-                    {breakfastRecipes[index].nutrition.fat +
-                      addedIngredientsTotalNutrition.fat}
-                    g || Total Carbs:{" "}
-                    {breakfastRecipes[index].nutrition.carbs +
-                      addedIngredientsTotalNutrition.carbs}
-                    g || Total Protein:{" "}
-                    {breakfastRecipes[index].nutrition.protein +
-                      addedIngredientsTotalNutrition.protein}
-                    g
+                    Total Calories: {addedIngredientsTotalNutrition.calories}{" "}
+                    cal || Total Fat: {addedIngredientsTotalNutrition.fat}g ||
+                    Total Carbs: {addedIngredientsTotalNutrition.carbs}g ||
+                    Total Protein: {addedIngredientsTotalNutrition.protein}g
                   </p>
-                ) : timeOfDay === "Lunch" ? (
-                  <p>
-                    Total Calories:{" "}
-                    {lunchRecipes[index].nutrition.calories +
-                      addedIngredientsTotalNutrition.calories}{" "}
-                    cal || Total Fat:{" "}
-                    {lunchRecipes[index].nutrition.fat +
-                      addedIngredientsTotalNutrition.fat}
-                    g || Total Carbs:{" "}
-                    {lunchRecipes[index].nutrition.carbs +
-                      addedIngredientsTotalNutrition.carbs}
-                    g || Total Protein:{" "}
-                    {lunchRecipes[index].nutrition.protein +
-                      addedIngredientsTotalNutrition.protein}
-                    g
-                  </p>
-                ) : timeOfDay === "Dinner" ? (
-                  <p>
-                    Total Calories:{" "}
-                    {dinnerRecipes[index].nutrition.calories +
-                      addedIngredientsTotalNutrition.calories}{" "}
-                    cal || Total Fat:{" "}
-                    {dinnerRecipes[index].nutrition.fat +
-                      addedIngredientsTotalNutrition.fat}
-                    g || Total Carbs:{" "}
-                    {dinnerRecipes[index].nutrition.carbs +
-                      addedIngredientsTotalNutrition.carbs}
-                    g || Total Protein:{" "}
-                    {dinnerRecipes[index].nutrition.protein +
-                      addedIngredientsTotalNutrition.protein}
-                    g
-                  </p>
-                ) : timeOfDay === "Snacks" ? (
-                  <p>
-                    Total Calories:{" "}
-                    {snacksRecipes[index].nutrition.calories +
-                      addedIngredientsTotalNutrition.calories}{" "}
-                    cal || Total Fat:{" "}
-                    {snacksRecipes[index].nutrition.fat +
-                      addedIngredientsTotalNutrition.fat}
-                    g || Total Carbs:{" "}
-                    {snacksRecipes[index].nutrition.carbs +
-                      addedIngredientsTotalNutrition.carbs}
-                    g || Total Protein:{" "}
-                    {snacksRecipes[index].nutrition.protein +
-                      addedIngredientsTotalNutrition.protein}
-                    g
-                  </p>
-                ) : (
-                  ""
-                )}
+                }
               </div>
               <div className="recipeDescription">
                 <textarea
                   placeholder={
-                    description !== "" ? description : "Edit Description"
+                    currentRecipe.description !== ""
+                      ? currentRecipe.description
+                      : "Edit Description"
                   }
                   onChange={(e) => setEditedDescription(e.target.value)}
                 />
@@ -438,7 +342,11 @@ const EditRecipeModal = ({
             <div className="editRecipeTitle">
               <input
                 type="text"
-                placeholder={name !== "" ? name : "Edit Recipe Title"}
+                placeholder={
+                  currentRecipe.name !== ""
+                    ? currentRecipe.name
+                    : "Edit Recipe Title"
+                }
                 onChange={(e) => setEditedTitle(e.target.value)}
               />
             </div>
