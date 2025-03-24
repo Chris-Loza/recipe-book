@@ -37,6 +37,11 @@ const RecipeCard = ({ timeOfDay, index }) => {
         >
           <img src="../../../images/EditPencilFillDark.svg" alt="Edit Icon" />
         </div>
+        <div
+          className="deleteButton"
+        >
+          <img src="../../../images/DeleteIconTrashRed.svg" alt="Delete Icon" />
+        </div>
         <div className="imageContainer">
           <img
             src={currentRecipe.image || "../../../images/PBHoneyOatmeal.jpg"}

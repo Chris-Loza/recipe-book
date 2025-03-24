@@ -32,6 +32,24 @@
             }
         }
 
+        .deleteButton {
+            position: absolute;
+            top: 22%;
+            left: 85%;
+            cursor: pointer;
+            border: 2px solid #EA3323;
+            border-radius: 3rem;
+            width: 12%;
+            height: 14%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+
         .imageContainer {
             width: 100%;
             max-height: 18rem;
