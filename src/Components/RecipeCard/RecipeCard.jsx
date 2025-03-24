@@ -1,23 +1,33 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./recipeCard.css";
 import ExpandedCard from "./ExpandedCard";
 import EditRecipeModal from "../EditRecipe/EditRecipeModal";
+import { GlobalContext } from "../../Library/globalContext";
 
-const RecipeCard = ({
-  name,
-  ingredients,
-  nutrition,
-  description,
-  image,
-  timeOfDay,
-  index,
-}) => {
+const RecipeCard = ({ timeOfDay, index }) => {
+  const { breakfastRecipes, lunchRecipes, dinnerRecipes, snacksRecipes } =
+    useContext(GlobalContext);
+  const [currentRecipe, setCurrentRecipe] = useState([]);
+  useEffect(() => {
+    if (timeOfDay === "Breakfast") {
+      setCurrentRecipe(breakfastRecipes[index]);
+    } else if (timeOfDay === "Lunch") {
+      setCurrentRecipe(lunchRecipes[index]);
+    } else if (timeOfDay === "Dinner") {
+      setCurrentRecipe(dinnerRecipes[index]);
+    } else {
+      setCurrentRecipe(snacksRecipes[index]);
+    }
+  }, [breakfastRecipes, lunchRecipes, dinnerRecipes, snacksRecipes, timeOfDay]);
+
   const [cardExpand, setCardExpand] = useState(false);
   const handleCardExpand = () => {
     setCardExpand(!cardExpand);
   };
   const [showEditModal, setShowEditModal] = useState(false);
   console.log(index);
+  console.log(breakfastRecipes[index]);
+  console.log(currentRecipe);
   return (
     <div className="recipeCard">
       <div className="recipeImg">
@@ -29,19 +39,19 @@ const RecipeCard = ({
         </div>
         <div className="imageContainer">
           <img
-            src={image || "../../../images/PBHoneyOatmeal.jpg"}
+            src={currentRecipe.image || "../../../images/PBHoneyOatmeal.jpg"}
             alt="Recipe Image"
           />
         </div>
       </div>
       <div className="recipeInfo">
         <div className="recipeTitle">
-          <p>{name}</p>
+          <p>{currentRecipe.name}</p>
         </div>
         <div className="recipeQuickInfo">
-          <div className="recipeDescription">{description}</div>
+          <div className="recipeDescription">{currentRecipe.description}</div>
           <div className="recipeQuickNutrients">
-            <p>Calories: {nutrition?.calories}</p>
+            <p>Calories: {currentRecipe.nutrition?.calories}</p>
             <p className="macros" onClick={handleCardExpand}>
               {" "}
               + Macros & Details
@@ -52,14 +62,11 @@ const RecipeCard = ({
       {cardExpand && (
         <div
           className="cardExpandContainer"
-          // onClick={() => setCardExpand(false)}
         >
           <ExpandedCard
             cardExpand={cardExpand}
             setCardExpand={setCardExpand}
-            ingredients={ingredients}
-            name={name}
-            nutrition={nutrition}
+            currentRecipe={currentRecipe}
           />
         </div>
       )}
@@ -70,9 +77,6 @@ const RecipeCard = ({
             setShowEditModal={setShowEditModal}
             timeOfDay={timeOfDay}
             index={index}
-            description={description}
-            image={image}
-            name={name}
           />
         </div>
       )}

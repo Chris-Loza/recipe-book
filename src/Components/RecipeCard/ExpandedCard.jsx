@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import "./expandedCard.css";
 
 const ExpandedCard = ({
-  cardExpand,
   setCardExpand,
-  name,
-  ingredients,
-  nutrition,
+  currentRecipe,
 }) => {
-
+  console.log(currentRecipe);
   return (
     <div className="expandedCardContainer" onClick={() => setCardExpand(false)}>
       <div className="expandedCard" onClick={(e) => e.stopPropagation()}>
@@ -21,7 +18,7 @@ const ExpandedCard = ({
                 <b>Serving size</b>
               </p>
               <p>
-                <b>{nutrition.quantity}g</b>
+                <b>{currentRecipe.nutrition.quantity}g</b>
               </p>
             </div>
             <div className="largeDivider"></div>
@@ -31,7 +28,7 @@ const ExpandedCard = ({
                 <p className="caloriesText">Calories</p>
               </div>
               <div className="calories">
-                <p>{nutrition?.calories}</p>
+                <p>{currentRecipe.nutrition?.calories}</p>
               </div>
             </div>
           </div>
@@ -44,33 +41,33 @@ const ExpandedCard = ({
             <div className="macro">
               <div className="totalMacro">
                 <p>
-                  <span>Total Fat</span> {nutrition?.fat}g
+                  <span>Total Fat</span> {currentRecipe.nutrition?.fat}g
                 </p>
               </div>
               <div className="macroPercentage">
-                <p>{Math.floor(nutrition?.fat/78 * 100)}%</p>
+                <p>{Math.floor((currentRecipe.nutrition?.fat / 78) * 100)}%</p>
               </div>
             </div>
             <div className="divider"></div>
             <div className="macro">
               <div className="totalMacro">
                 <p>
-                  <span>Total Carbohydrate</span> {nutrition?.carbs}g
+                  <span>Total Carbohydrate</span> {currentRecipe.nutrition?.carbs}g
                 </p>
               </div>
               <div className="macroPercentage">
-                <p>{Math.floor(nutrition?.carbs/275 * 100)}%</p>
+                <p>{Math.floor((currentRecipe.nutrition?.carbs / 275) * 100)}%</p>
               </div>
             </div>
             <div className="divider"></div>
             <div className="macro">
               <div className="totalMacro">
                 <p>
-                  <span>Total Protein</span> {nutrition?.protein}g
+                  <span>Total Protein</span> {currentRecipe.nutrition?.protein}g
                 </p>
               </div>
               <div className="macroPercentage">
-                <p>{Math.floor(nutrition?.protein/50 * 100)}%</p>
+                <p>{Math.floor((currentRecipe.nutrition?.protein / 50) * 100)}%</p>
               </div>
             </div>
             <div className="largeDivider"></div>
@@ -85,13 +82,13 @@ const ExpandedCard = ({
         </div>
         <div className="ingredientsList">
           <div className="ingredientsHeader">
-            <h1>{name}</h1>
+            <h1>{currentRecipe.name}</h1>
             <div className="divider"></div>
           </div>
           <div className="ingredients">
             <h1>Ingredients</h1>
             <ul>
-              {ingredients.ingredientArray.map((ingredient, index) => (
+              {currentRecipe.ingredients.ingredientArray.map((ingredient, index) => (
                 <li key={index}>
                   {ingredient.ingredient}: {ingredient.quantity}g
                 </li>

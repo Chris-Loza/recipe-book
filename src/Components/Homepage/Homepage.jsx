@@ -14,24 +14,6 @@ const Homepage = () => {
     dinnerRecipes,
     snacksRecipes,
   } = useContext(GlobalContext);
-
-  const currentRecipes =
-    timeOfDay === "Breakfast"
-      ? breakfastRecipes
-      : timeOfDay === "Lunch"
-      ? lunchRecipes
-      : timeOfDay === "Dinner"
-      ? dinnerRecipes
-      : timeOfDay === "snacks"
-      ? snacksRecipes
-      : [];
-  // const [currentRecipes, setCurrentRecipes] = useState(
-  //   currentInitialRecipes || []
-  // );
-
-  // useEffect(() => {
-  //   setCurrentRecipes()
-  // }, [timeOfDay]);
   console.log(breakfastRecipes);
   const [showModal, setShowModal] = useState(false);
 
@@ -75,44 +57,12 @@ const Homepage = () => {
           </div>
         </div>
         <div className="recipeCards">
-          {currentRecipes.length > 0 ? (
-            currentRecipes.map((recipe, index) => (
-              <RecipeCard
-                key={index}
-                index={index}
-                name={recipe.name}
-                ingredients={recipe.ingredients}
-                nutrition={recipe.nutrition}
-                description={recipe.description}
-                image={recipe.image}
-                timeOfDay={recipe.timeOfDay}
-              />
-            ))
-          ) : (
-            <div
-              className="addRecipeCardContainer"
-              onClick={() => setShowModal(!showModal)}
-            >
-              <AddCards />
-            </div>
-          )}
-          {/* <RecipeCard name={"Recipe Title"} />
-          <RecipeCard name={"Recipe Title"} />
-          <RecipeCard name={"Recipe Title"} />
-          <RecipeCard name={"Recipe Title"} />
-          <RecipeCard name={"Recipe Title"} />
-          <RecipeCard name={"Recipe Title"} /> */}
-          {/* {timeOfDay === "Breakfast" ? (
+          {timeOfDay === "Breakfast" ? (
             breakfastRecipes.length > 0 ? (
               breakfastRecipes.map((recipe, index) => (
                 <RecipeCard
                   key={index}
                   index={index}
-                  name={recipe.name}
-                  ingredients={recipe.ingredients}
-                  nutrition={recipe.nutrition}
-                  description={recipe.description}
-                  image={recipe.image}
                   timeOfDay={recipe.timeOfDay}
                 />
               ))
@@ -130,11 +80,6 @@ const Homepage = () => {
                 <RecipeCard
                   key={index}
                   index={index}
-                  name={recipe.name}
-                  ingredients={recipe.ingredients}
-                  nutrition={recipe.nutrition}
-                  description={recipe.description}
-                  image={recipe.image}
                   timeOfDay={recipe.timeOfDay}
                 />
               ))
@@ -152,11 +97,6 @@ const Homepage = () => {
                 <RecipeCard
                   key={index}
                   index={index}
-                  name={recipe.name}
-                  ingredients={recipe.ingredients}
-                  nutrition={recipe.nutrition}
-                  description={recipe.description}
-                  image={recipe.image}
                   timeOfDay={recipe.timeOfDay}
                 />
               ))
@@ -174,11 +114,6 @@ const Homepage = () => {
                 <RecipeCard
                   key={index}
                   index={index}
-                  name={recipe.name}
-                  ingredients={recipe.ingredients}
-                  nutrition={recipe.nutrition}
-                  description={recipe.description}
-                  image={recipe.image}
                   timeOfDay={recipe.timeOfDay}
                 />
               ))
@@ -192,7 +127,7 @@ const Homepage = () => {
             )
           ) : (
             "Add a Recipe"
-          )} */}
+          )}
         </div>
       </div>
       {showModal && (

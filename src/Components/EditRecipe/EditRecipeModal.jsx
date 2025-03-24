@@ -30,13 +30,13 @@ const EditRecipeModal = ({
   const [displayImage, setDisplayImage] = useState(currentRecipe.image);
 
   const [editedTimeOfDay, setEditedTimeOfDay] = useState(
-    timeOfDay || "Breakfast"
+    currentRecipe.timeOfDay || "Breakfast"
   );
-  const [editedTitle, setEditedTitle] = useState("");
-  const [editedDescription, setEditedDescription] = useState("");
+  const [editedTitle, setEditedTitle] = useState(currentRecipe.name || "");
+  const [editedDescription, setEditedDescription] = useState(currentRecipe.description || "");
   const [editedRecipeImage, setEditedRecipeImage] = useState({
     file: null,
-    url: "",
+    url: currentRecipe.image || "",
   });
 
   const formRef = useRef(null);
