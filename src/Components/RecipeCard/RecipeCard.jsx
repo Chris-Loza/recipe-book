@@ -1,12 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./recipeCard.css";
 import ExpandedCard from "./ExpandedCard";
 import EditRecipeModal from "../EditRecipe/EditRecipeModal";
 import { GlobalContext } from "../../Library/globalContext";
 
 const RecipeCard = ({ timeOfDay, index }) => {
-  const { breakfastRecipes, lunchRecipes, dinnerRecipes, snacksRecipes } =
-    useContext(GlobalContext);
+  const {
+    breakfastRecipes,
+    lunchRecipes,
+    dinnerRecipes,
+    snacksRecipes,
+    deleteRecipe,
+  } = useContext(GlobalContext);
+
   const [currentRecipe, setCurrentRecipe] = useState([]);
   useEffect(() => {
     if (timeOfDay === "Breakfast") {
@@ -25,9 +31,18 @@ const RecipeCard = ({ timeOfDay, index }) => {
     setCardExpand(!cardExpand);
   };
   const [showEditModal, setShowEditModal] = useState(false);
-  console.log(index);
-  console.log(breakfastRecipes[index]);
-  console.log(currentRecipe);
+
+  const [showDialog, setShowDialog] = useState(false);
+  const dialogRef = useRef(null);
+  const handleDialog = () => {
+    setShowDialog(!showDialog);
+  };
+
+  const handleDeleteRecipe = () => {
+    deleteRecipe(timeOfDay, index);
+    setShowDialog(false);
+  };
+
   return (
     <div className="recipeCard">
       <div className="recipeImg">
@@ -37,11 +52,36 @@ const RecipeCard = ({ timeOfDay, index }) => {
         >
           <img src="../../../images/EditPencilFillDark.svg" alt="Edit Icon" />
         </div>
-        <div
-          className="deleteButton"
-        >
-          <img src="../../../images/DeleteIconTrashRed.svg" alt="Delete Icon" />
+        <div className="deleteButton">
+          <img
+            src="../../../images/DeleteIconTrashRed.svg"
+            alt="Delete Icon"
+            onClick={handleDialog}
+          />
         </div>
+        {showDialog && (
+          <div className="dialogContainer">
+            <dialog ref={dialogRef}>
+              <div className="confirmationText">
+                Are you sure you want to delete this recipe?
+              </div>
+              <div className="buttons">
+                <div
+                  className="dialogButton cancelButton"
+                  onClick={() => setShowDialog(false)}
+                >
+                  Cancel
+                </div>
+                <div
+                  className="dialogButton confirmDeleteButton"
+                  onClick={handleDeleteRecipe}
+                >
+                  Delete
+                </div>
+              </div>
+            </dialog>
+          </div>
+        )}
         <div className="imageContainer">
           <img
             src={currentRecipe.image || "../../../images/PBHoneyOatmeal.jpg"}
@@ -65,9 +105,7 @@ const RecipeCard = ({ timeOfDay, index }) => {
         </div>
       </div>
       {cardExpand && (
-        <div
-          className="cardExpandContainer"
-        >
+        <div className="cardExpandContainer">
           <ExpandedCard
             cardExpand={cardExpand}
             setCardExpand={setCardExpand}

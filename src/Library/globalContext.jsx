@@ -11,6 +11,24 @@ export const GlobalProvider = ({ children }) => {
   const [dinnerRecipes, setDinnerRecipes] = useState([]);
   const [snacksRecipes, setSnacksRecipes] = useState([]);
 
+  const deleteRecipe = (timeOfDay, index) => {
+    if (timeOfDay === "Breakfast") {
+      setBreakfastRecipes((prevRecipe) =>
+        prevRecipe.filter((_, i) => i !== index)
+      );
+    } else if (timeOfDay === "Lunch") {
+      setLunchRecipes((prevRecipe) => prevRecipe.filter((_, i) => i !== index));
+    } else if (timeOfDay === "Dinner") {
+      setDinnerRecipes((prevRecipe) =>
+        prevRecipe.filter((_, i) => i !== index)
+      );
+    } else if (timeOfDay === "Snacks") {
+      setSnacksRecipes((prevRecipe) =>
+        prevRecipe.filter((_, i) => i !== index)
+      );
+    }
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -24,6 +42,7 @@ export const GlobalProvider = ({ children }) => {
         setDinnerRecipes,
         snacksRecipes,
         setSnacksRecipes,
+        deleteRecipe,
       }}
     >
       {children}
