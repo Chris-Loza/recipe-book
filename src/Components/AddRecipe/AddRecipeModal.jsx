@@ -5,7 +5,6 @@ import { GlobalContext } from "../../Library/globalContext";
 const AddRecipeModal = ({ showModal, setShowModal }) => {
   const {
     timeOfDay,
-    breakfastRecipes,
     setBreakfastRecipes,
     setLunchRecipes,
     setDinnerRecipes,
@@ -29,7 +28,6 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
     if (formRef.current) {
       const ingredientData = new FormData(formRef.current);
       const rawIngredientValues = Object.fromEntries(ingredientData.entries());
-      console.log("Raw ingredient Values", rawIngredientValues);
 
       if (rawIngredientValues.ingredient !== "") {
         const ingredientValues = {
@@ -114,27 +112,27 @@ const AddRecipeModal = ({ showModal, setShowModal }) => {
       image: recipeImage.url,
     };
 
-    switch (selectedTime) {
-      case "Breakfast":
-        setBreakfastRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
-        break;
-      case "Lunch":
-        setLunchRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
-        break;
-      case "Dinner":
-        setDinnerRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
-        break;
-      case "Snacks":
-        setSnacksRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
-        break;
-      default:
-        break;
+    if (recipeName !== "" && ingredients.ingredientArray.length > 0) {
+      switch (selectedTime) {
+        case "Breakfast":
+          setBreakfastRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
+          break;
+        case "Lunch":
+          setLunchRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
+          break;
+        case "Dinner":
+          setDinnerRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
+          break;
+        case "Snacks":
+          setSnacksRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
+          break;
+        default:
+          break;
+      }
     }
-  };
 
-  useEffect(() => {
-    console.log(breakfastRecipes);
-  }, [breakfastRecipes]);
+    setShowModal(false);
+  };
 
   return (
     showModal && (

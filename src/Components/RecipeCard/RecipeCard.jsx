@@ -68,7 +68,10 @@ const RecipeCard = ({ timeOfDay, index }) => {
               <div className="buttons">
                 <div
                   className="dialogButton cancelButton"
-                  onClick={() => setShowDialog(false)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowDialog(false);
+                  }}
                 >
                   Cancel
                 </div>

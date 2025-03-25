@@ -2,7 +2,7 @@ import "./homepage.css";
 import TimeOfDay from "../TimeOfDay/TimeOfDay";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import AddRecipeModal from "../AddRecipe/AddRecipeModal";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { GlobalContext } from "../../Library/globalContext";
 import AddCards from "../RecipeCard/AddCards";
 
@@ -14,7 +14,6 @@ const Homepage = () => {
     dinnerRecipes,
     snacksRecipes,
   } = useContext(GlobalContext);
-  console.log(breakfastRecipes);
   const [showModal, setShowModal] = useState(false);
 
   return (

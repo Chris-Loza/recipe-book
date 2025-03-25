@@ -20,20 +20,20 @@ const EditRecipeModal = ({
       : timeOfDay === "snacks"
       ? snacksRecipes[index]
       : "";
-  console.log(currentRecipe);
   const ingredientsList = currentRecipe.ingredients.ingredientArray;
   const [currentIngredientsList, setCurrentIngredientsList] = useState(
     ingredientsList || []
   );
-  console.log(ingredientsList);
-  console.log(currentIngredientsList);
+
   const [displayImage, setDisplayImage] = useState(currentRecipe.image);
 
   const [editedTimeOfDay, setEditedTimeOfDay] = useState(
     currentRecipe.timeOfDay || "Breakfast"
   );
   const [editedTitle, setEditedTitle] = useState(currentRecipe.name || "");
-  const [editedDescription, setEditedDescription] = useState(currentRecipe.description || "");
+  const [editedDescription, setEditedDescription] = useState(
+    currentRecipe.description || ""
+  );
   const [editedRecipeImage, setEditedRecipeImage] = useState({
     file: null,
     url: currentRecipe.image || "",
@@ -120,7 +120,6 @@ const EditRecipeModal = ({
 
   const handleRecipeEdit = () => {
     if (timeOfDay === "Breakfast") {
-      console.log(breakfastRecipes[index]);
       breakfastRecipes[index].name = editedTitle;
       breakfastRecipes[index].description = editedDescription;
       breakfastRecipes[index].timeOfDay = editedTimeOfDay;
@@ -131,7 +130,6 @@ const EditRecipeModal = ({
         breakfastRecipes[index].image = editedRecipeImage.url;
       }
     } else if (timeOfDay === "Lunch") {
-      console.log(lunchRecipes[index]);
       lunchRecipes[index].name = editedTitle;
       lunchRecipes[index].description = editedDescription;
       lunchRecipes[index].timeOfDay = editedTimeOfDay;
@@ -141,7 +139,6 @@ const EditRecipeModal = ({
         lunchRecipes[index].image = editedRecipeImage.url;
       }
     } else if (timeOfDay === "Dinner") {
-      console.log(dinnerRecipes[index]);
       dinnerRecipes[index].name = editedTitle;
       dinnerRecipes[index].description = editedDescription;
       dinnerRecipes[index].timeOfDay = editedTimeOfDay;
@@ -151,7 +148,6 @@ const EditRecipeModal = ({
         dinnerRecipes[index].image = editedRecipeImage.url;
       }
     } else {
-      console.log(snacksRecipes[index]);
       snacksRecipes[index].name = editedTitle;
       snacksRecipes[index].description = editedDescription;
       snacksRecipes[index].timeOfDay = editedTimeOfDay;
@@ -161,6 +157,8 @@ const EditRecipeModal = ({
         snacksRecipes[index].image = editedRecipeImage.url;
       }
     }
+
+    setShowEditModal(false);
   };
 
   return (

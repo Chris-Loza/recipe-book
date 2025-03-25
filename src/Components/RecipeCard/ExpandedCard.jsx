@@ -5,7 +5,7 @@ const ExpandedCard = ({
   setCardExpand,
   currentRecipe,
 }) => {
-  console.log(currentRecipe);
+
   return (
     <div className="expandedCardContainer" onClick={() => setCardExpand(false)}>
       <div className="expandedCard" onClick={(e) => e.stopPropagation()}>

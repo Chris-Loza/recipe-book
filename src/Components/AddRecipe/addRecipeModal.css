@@ -1,311 +1,310 @@
 .modal {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    .modalContainer {
-        background-color: #F0F4F8;
-        border-radius: 0.5rem;
-        width: 60%;
-        height: 90%;
-        position: absolute;
-        top: 25%;
-        left: 50%;
-        transform: translate(-50%, -25%);
+  .modalContainer {
+    background-color: #f0f4f8;
+    border-radius: 0.5rem;
+    width: 60%;
+    height: 90%;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+    display: flex;
+    flex-direction: column;
+
+    .modalHeader {
+      height: 10%;
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+      color: #263238;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      p {
+        font-size: 1.5rem;
+      }
+
+      .botBorder {
+        margin-top: 1rem;
+        height: 1px;
+        background-color: #546e7a;
+        width: 90%;
+      }
+    }
+
+    .radioButtons {
+      height: 20%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+
+      .radioFieldSet {
+        border: 1px solid #546e7a;
+        width: 95%;
+        height: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+
+        legend {
+          color: #263238;
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+      }
+
+      span {
+        padding-left: 0.3rem;
+      }
+    }
+
+    .recipe {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40%;
+
+      .recipeFieldSet {
+        border: 1px solid #546e7a;
         display: flex;
         flex-direction: column;
+        width: 95%;
+        height: 100%;
 
-        .modalHeader {
-            height: 10%;
-            border-top-left-radius: 0.5rem;
-            border-top-right-radius: 0.5rem;
-            color: #263238;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            p {
-                font-size: 1.5rem;
-            }
-
-            .botBorder {
-                margin-top: 1rem;
-                height: 1px;
-                background-color: #546E7A;
-                width: 90%;
-            }
+        legend {
+          color: #263238;
+          padding-left: 1rem;
+          padding-right: 1rem;
         }
 
-        .radioButtons {
-            height: 20%;
+        .ingredients {
+          max-height: 75%;
+          overflow-y: scroll;
+          padding-top: 0.5rem;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+
+          ::-webkit-scrollbar {
+            display: none;
+          }
+
+          .ingredient {
             display: flex;
             align-items: center;
+            padding-left: 1rem;
+            gap: 0.5rem;
+
+            img {
+              cursor: pointer;
+
+              &:hover {
+                opacity: 0.5;
+              }
+            }
+          }
+        }
+
+        .ingredientInputs {
+          display: flex;
+          height: 25%;
+          align-items: center;
+
+          form {
+            display: flex;
             justify-content: space-evenly;
-
-            .radioFieldSet {
-                border: 1px solid #546E7A;
-                width: 95%;
-                height: 80%;
-                display: flex;
-                align-items: center;
-                justify-content: space-evenly;
-
-                legend {
-                    color: #263238;
-                    padding-left: 1rem;
-                    padding-right: 1rem;
-                }
-            }
-
-            span {
-                padding-left: 0.3rem;
-            }
-        }
-
-        .recipe {
-            display: flex;
             align-items: center;
-            justify-content: center;
-            height: 40%;
+            height: 100%;
 
-            .recipeFieldSet {
-                border: 1px solid #546E7A;
-                display: flex;
-                flex-direction: column;
-                width: 95%;
-                height: 100%;
+            input {
+              height: 50%;
+              border-radius: 0.5rem;
+              outline: none;
+              border: none;
+              text-align: center;
+              box-shadow: 0 1px 2px #263238;
 
-                legend {
-                    color: #263238;
-                    padding-left: 1rem;
-                    padding-right: 1rem;
-                }
+              &:hover {
+                box-shadow: 0 1px 2px #4dd0e1;
+              }
 
-                .ingredients {
-                    max-height: 75%;
-                    overflow-y: scroll;
-                    padding-top: 0.5rem;
-                    scrollbar-width: none;
-                    -ms-overflow-style: none;
-
-                    ::-webkit-scrollbar {
-                        display: none;
-                    }
-
-                    .ingredient {
-                        display: flex;
-                        align-items: center;
-                        padding-left: 1rem;
-                        gap: 0.5rem;
-
-                        img {
-                            cursor: pointer;
-
-                            &:hover {
-                                opacity: 0.5;
-                            }
-                        }
-                    }
-                }
-
-                .ingredientInputs {
-                    display: flex;
-                    height: 25%;
-                    align-items: center;
-
-                    form {
-                        display: flex;
-                        justify-content: space-evenly;
-                        align-items: center;
-                        height: 100%;
-
-                        input {
-                            height: 50%;
-                            border-radius: 0.5rem;
-                            outline: none;
-                            border: none;
-                            text-align: center;
-                            box-shadow: 0 1px 2px #263238;
-
-                            &:hover {
-                                box-shadow: 0 1px 2px #4DD0E1;
-                            }
-
-                            &:focus {
-                                box-shadow: 0 1px 2px #4DD0E1;
-                            }
-                        }
-
-                        #ingredientName {
-                            width: 40%;
-                            text-align: left;
-                            padding-left: 1rem;
-                        }
-    
-                        #ingredientQuantity {
-                            width: 10%;
-                        
-                        }
-                        #ingredientCalories {
-                            width: 10%;
-                        }
-    
-                        #ingredientFat {
-                            width: 10%;
-                        }
-    
-                        #ingredientCarbs {
-                            width: 10%;
-                        }
-    
-                        #ingredientProtein {
-                            width: 10%;
-                        }
-                    }
-
-                    img {
-                        width: 3.5rem;
-                        cursor: pointer;
-                        padding-right: 1rem;
-
-                        &:hover {
-                            opacity: 0.5;
-                        }
-                    }
-                }
+              &:focus {
+                box-shadow: 0 1px 2px #4dd0e1;
+              }
             }
+
+            #ingredientName {
+              width: 40%;
+              text-align: left;
+              padding-left: 1rem;
+            }
+
+            #ingredientQuantity {
+              width: 10%;
+            }
+            #ingredientCalories {
+              width: 10%;
+            }
+
+            #ingredientFat {
+              width: 10%;
+            }
+
+            #ingredientCarbs {
+              width: 10%;
+            }
+
+            #ingredientProtein {
+              width: 10%;
+            }
+          }
+
+          img {
+            width: 3.5rem;
+            cursor: pointer;
+            padding-right: 1rem;
+
+            &:hover {
+              opacity: 0.5;
+            }
+          }
         }
-
-        .nutritionSummary {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 20%;
-
-            .nutritionFieldSet {
-                border: 1px solid #546E7A;
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-                justify-content: center;
-                align-items: center;
-                width: 95%;
-                height: 80%;
-
-                legend {
-                    color: #263238;
-                    padding-left: 1rem;
-                    padding-right: 1rem;
-                }
-
-                .totalMacros {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-
-                .recipeDescription {
-                    width: 95%;
-                    height: 50%;
-                    display: flex;
-                    justify-content: center;
-
-                    textarea {
-                        padding: 1rem;
-                        width: 80%;
-                        border-radius: 0.5rem;
-                        outline: none;
-                        border: none;
-                        text-align: center;
-                        box-shadow: 0 1px 2px #263238;
-                        resize: none;
-                        scrollbar-width: none;
-                        -ms-overflow-style: none;
-
-                        ::-webkit-scrollbar {
-                            display: none;
-                        }
-
-                        &:hover {
-                            box-shadow: 0 1px 2px #4DD0E1;
-                        }
-
-                        &:focus {
-                            box-shadow: 0 1px 2px #4DD0E1;
-                        }
-                    }
-                }
-            }
-        }
-
-        .recipeImgSubmit {
-            height: 10%;
-            border-bottom-right-radius: 0.5rem;
-            border-bottom-left-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-evenly;
-
-            .recipeImageContainer {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                
-                label {
-                    display: flex;
-                    cursor: pointer;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 0.5rem;
-
-                    img {
-                        width: 2rem;
-                        height: 2rem;
-                        opacity: 0.8;
-                        object-fit: cover;
-
-                        &:hover {
-                            opacity: 0.5;
-                        }
-                    }
-                }
-            }
-
-            .recipeTitle {
-                input {
-                    padding: 0.25rem;
-                    border-radius: 0.5rem;
-                    outline: none;
-                    border: none;
-                    text-align: center;
-                    box-shadow: 0 1px 2px #263238;
-
-                    &:hover {
-                        box-shadow: 0 1px 2px #4DD0E1;
-                    }
-
-                    &:focus {
-                        box-shadow: 0 1px 2px #4DD0E1;
-                    }
-                }
-            }
-
-            .submitButton {
-                background-color: #4DD0E1;
-                display: flex;
-                width: 10rem;
-                height: 2rem;
-                border: 1px solid #546E7A;
-                color: #263238;
-                justify-content: center;
-                align-items: center;
-                border-radius: 1rem;
-                cursor: pointer;
-
-                &:hover {
-                    opacity: 0.7;
-                }
-            }
-        }
+      }
     }
+
+    .nutritionSummary {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 20%;
+
+      .nutritionFieldSet {
+        border: 1px solid #546e7a;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        width: 95%;
+        height: 80%;
+
+        legend {
+          color: #263238;
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+
+        .totalMacros {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .recipeDescription {
+          width: 95%;
+          height: 50%;
+          display: flex;
+          justify-content: center;
+
+          textarea {
+            padding: 1rem;
+            width: 80%;
+            border-radius: 0.5rem;
+            outline: none;
+            border: none;
+            text-align: center;
+            box-shadow: 0 1px 2px #263238;
+            resize: none;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+
+            ::-webkit-scrollbar {
+              display: none;
+            }
+
+            &:hover {
+              box-shadow: 0 1px 2px #4dd0e1;
+            }
+
+            &:focus {
+              box-shadow: 0 1px 2px #4dd0e1;
+            }
+          }
+        }
+      }
+    }
+
+    .recipeImgSubmit {
+      height: 10%;
+      border-bottom-right-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+
+      .recipeImageContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        label {
+          display: flex;
+          cursor: pointer;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+
+          img {
+            width: 2rem;
+            height: 2rem;
+            opacity: 0.8;
+            object-fit: cover;
+
+            &:hover {
+              opacity: 0.5;
+            }
+          }
+        }
+      }
+
+      .recipeTitle {
+        input {
+          padding: 0.25rem;
+          border-radius: 0.5rem;
+          outline: none;
+          border: none;
+          text-align: center;
+          box-shadow: 0 1px 2px #263238;
+
+          &:hover {
+            box-shadow: 0 1px 2px #4dd0e1;
+          }
+
+          &:focus {
+            box-shadow: 0 1px 2px #4dd0e1;
+          }
+        }
+      }
+
+      .submitButton {
+        background-color: #4dd0e1;
+        display: flex;
+        width: 10rem;
+        height: 2rem;
+        border: 1px solid #546e7a;
+        color: #263238;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1rem;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
 }

@@ -1,32 +1,32 @@
 .timeOfDay {
-    padding: 0.5rem;
-    margin-top: 2rem;
-    padding-left: 1rem;
-    display: flex;
-    flex-direction: column;
+  padding: 0.5rem;
+  margin-top: 2rem;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
 
-    h1 {
-        cursor: pointer;
-        padding-bottom: 0.5rem;
+  h1 {
+    cursor: pointer;
+    padding-bottom: 0.5rem;
 
-        &:hover {
-            color: #26C6DA;
-        }
-
-        &.active {
-            color: #26C6DA;
-        }
+    &:hover {
+      color: #26c6da;
     }
 
-    p {
-        margin-left: 1rem;
-        color: #B0BEC5;
+    &.active {
+      color: #26c6da;
     }
+  }
 
-    .bottomBorder {
-        height: 1px;
-        width: 80%;
-        margin-top: 1rem;
-        background-color: #546E7A;
-    }
+  p {
+    margin-left: 1rem;
+    color: #b0bec5;
+  }
+
+  .bottomBorder {
+    height: 1px;
+    width: 80%;
+    margin-top: 1rem;
+    background-color: #546e7a;
+  }
 }
