@@ -36,13 +36,31 @@ const Homepage = () => {
         <div className="myInfo"> Developed by Christian Loza</div>
         <div className="myLinks">
           <div className="linkedIn">
-            <img src="../../../images/LinkedIn.svg" alt="LinkedIn Icon" />
+            <a
+              href="https://www.linkedin.com/in/christianloza/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="../../../images/LinkedIn.svg" alt="LinkedIn Icon" />
+            </a>
           </div>
           <div className="gitHub">
-            <img src="../../../images/GitHub.svg" alt="GitHub Icon" />
+            <a
+              href="https://github.com/Chris-Loza"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="../../../images/GitHub.svg" alt="GitHub Icon" />
+            </a>
           </div>
           <div className="hireMe">
-            <img src="../../../images/HireMe.svg" alt="Hire Me Icon" />
+            <a
+              href="../../../images/Resume032525.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="../../../images/HireMe.svg" alt="Hire Me Icon" />
+            </a>
           </div>
         </div>
       </div>
